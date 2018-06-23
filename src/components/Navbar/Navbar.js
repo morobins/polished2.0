@@ -1,0 +1,25 @@
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+const Navbar = props => {
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <NavLink className="navbar-brand" to="/" activeClassName="active">Polished</NavLink>
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/" activeClassName="active">Collection</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/discover" activeClassName="active">Add</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/search" activeClassName="active">Search</NavLink>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  )
+}
+
+export default Navbar;
