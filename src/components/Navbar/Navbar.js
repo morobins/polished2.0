@@ -8,10 +8,10 @@ const Navbar = props => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/" activeClassName="active">Collection</NavLink>
+            <NavLink className="nav-link" to="/collection" activeClassName="active">Collection</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/discover" activeClassName="active">Add</NavLink>
+            <NavLink className="nav-link" to="/add" activeClassName="active">Add</NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/search" activeClassName="active">Search</NavLink>
