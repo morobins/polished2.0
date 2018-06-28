@@ -1,11 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Image } from 'semantic-ui-react'
 
+//TODO: Fix polished logo image
 const Navbar = props => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <NavLink className="navbar-brand" to="/" activeClassName="active">Polished
-      {/*<img src="../../../public/../src/images/title.jpg" width="30" height="30" alt=""> </img>*/}
+      {/*<Image src='../../images/title.jpg' />*/}
     </NavLink>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
