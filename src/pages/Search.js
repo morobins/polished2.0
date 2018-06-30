@@ -1,5 +1,40 @@
-// import React, {Component} from "react";
-// import products from "../../src/product_seeds.json";
+import React from 'react'
+import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react'
+
+const options = [
+  { key: 'n', text: 'Nails', value: 'Nails' },
+  { key: 'l', text: 'Lips', value: 'Lips' },
+  { key: 'f', text: 'Face', value: 'Face' },
+  { key: 'm', text: 'Mascara', value: 'Mascara' },
+  { key: 'e', text: 'Eyes', value: 'Eyes' },
+  { key: 'b', text: 'Brows', value: 'Brows' },
+  { key: 'c', text: 'Cheeks', value: 'Cheeks' },
+  { key: 'mi', text: 'Misc', value: 'Misc' },
+]
+
+const SearchForm = () => (
+  <Container text>
+    <Header as='h1' content='Search your Collection' textAlign='center' />
+    <Form verticalAlign='middle' >
+    <Form.Select options={options} placeholder='Search by Product Category' />
+      <Form.Field>
+        <label>Search by Brand</label>
+        <input placeholder='Brand' />
+      </Form.Field>
+      <Form.Field>
+        <label>Search by Product Name</label>
+        <input placeholder='Product Name' />
+      </Form.Field>
+      <Form.Field>
+        <label>Search by Color</label>
+        <input placeholder='Color' />
+      </Form.Field>
+      <Button type='submit'>Submit</Button>
+    </Form>
+  </Container>
+)
+
+export default SearchForm
 
 
 // class Search extends Component {
