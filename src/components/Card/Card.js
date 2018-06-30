@@ -9,18 +9,16 @@ const Card = props => (
     <div className="content">
       <ul>
         <li>
-          <strong>Name:</strong> {props.name}
+          <strong>Product Name:</strong> {props.product_name}
         </li>
         <li>
-          <strong>Occupation:</strong> {props.occupation}
+          <strong>Brand:</strong> {props.brand}
         </li>
-        <li>
-          <strong>Address:</strong> {props.location}
-        </li>
+     
       </ul>
     </div>
     <span className="remove">𝘅</span>
   </div>
 );
 
-export default FriendCard;
+export default Card;

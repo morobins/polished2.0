@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react'
+import API from "../utils/API"
 
 const options = [
   { key: 'n', text: 'Nails', value: 'Nails' },
@@ -12,133 +13,108 @@ const options = [
   { key: 'mi', text: 'Misc', value: 'Misc' },
 ]
 
-const SearchForm = () => (
-  <Container text>
-    <Header as='h1' content='Search your Collection' textAlign='center' />
-    <Form verticalAlign='middle' >
-    <Form.Select options={options} placeholder='Search by Product Category' />
-      <Form.Field>
-        <label>Search by Brand</label>
-        <input placeholder='Brand' />
-      </Form.Field>
-      <Form.Field>
-        <label>Search by Product Name</label>
-        <input placeholder='Product Name' />
-      </Form.Field>
-      <Form.Field>
-        <label>Search by Color</label>
-        <input placeholder='Color' />
-      </Form.Field>
-      <Button type='submit'>Submit</Button>
-    </Form>
-  </Container>
-)
 
-export default SearchForm
+class Search extends Component {
+
+  state = {
+    search: "",
+    brandsList: [],
+    prodsList: [],
+    brandsResults: [],
+    error: ""
+  }
+
+  // componentDidMount() {
+  //   this.getProduct();
+  // }
+
+  // getBrands = (brand) => {
+  //   API.getMakeupBrand(brand)
+  //     .then(res => {
+  //       console.log(res.data);
+  //       this.setState({brandsList: res.data.brand})})
+  //     .catch(err => console.log(err));
+  //     // console.log(res.data);
+  // }
 
 
-// class Search extends Component {
+  getProds = () => {
+    API.getProduct()
+      .then(res => {
+        console.log(res)
+        this.setState({
+          prodsList: res.data
+        })
+      })
+      .catch(err => console.log(err));
+  }
 
-//   state = {
-//     search: "",
-//     brandsList: [],
-//     prodsList: [],
-//     brandsResults: [],
-//     error: ""
-//   }
+  handleInputChange = event => {
+    const { name, value } = event.target;
 
-//   componentDidMount() {
-//     this.getBrands();
-//     this.getProds();
-//   }
+    this.setState({
+      [name]: value
+    });
+  }
 
-//   getBrands = (brand) => {
-//     API.getMakeupBrand(brand)
-//       .then(res => {
-//         console.log(res.data);
-//         this.setState({brandsList: res.data.brand})})
-//       .catch(err => console.log(err));
-//       // console.log(res.data);
-//   }
-  
+  handleFormSubmit = event => {
+    event.preventDefault();
 
-//   getProds = () => {
-//     API.getProdType()
-//       .then(res => {
-//         console.log(res)
-//         this.setState({
-//           prodsList: res.data.product_type
-//         })
-//       })
-//       .catch(err => console.log(err));
-//   }
+    API.getProduct(this.state.search)
+      .then(res => {
+        console.log(res.data);
+        if (res.data.status === "error") {
+          throw new Error(res.data.message)
+        }
+        this.setState({
+          prodsList: res.data,
+          error: ""
+        });
+      })
+      .catch(err => this.setState({error: err.message}))
+  }
 
-//   handleInputChange = event => {
-//     const { name, value } = event.target;
+  render() {
 
-//     this.setState({
-//       [name]: value
-//     });
-//   }
+    return (
+      <div className="container my-5">
 
-//   // handleFormSubmit = event => {
-//   //   event.preventDefault();
+        <Container text>
+          <Header as='h1' content='Search your Collection' textAlign='center' />
+          <Form verticalAlign='middle' >
+            <Form.Select options={options} placeholder='Search by Product Category' />
+            <Form.Field>
+              <label>Search by Brand</label>
+              <input placeholder='Brand' type='text' name='search'
+                value={this.state.search}
+                onChange={this.handleInputChange} />
+              <datalist id="brand">
+                {
+                  (this.state.brandsList)
+                    ?
+                    (this.state.prodsList.map(brand => <option value={brand} key={brand} />)) : ""}
+              </datalist>
+            </Form.Field>
+            <Form.Field>
+              <label>Search by Product Name</label>
+              <input placeholder='Product Name' />
+            </Form.Field>
+            <Form.Field>
+              <label>Search by Color</label>
+              <input placeholder='Color' />
+            </Form.Field>
+            <Button type='submit' onClick={this.handleFormSubmit} >Submit</Button>
+          </Form>
+        </Container>
 
-//   //   API.getMakeupBrand(this.state.search)
-//   //     .then(res => {
-//   //       if (res.data.status === "error") {
-//   //         throw new Error(res.data.message)
-//   //       }
-//   //       this.setState({
-//   //         brandResults: res.data.message,
-//   //         error: ""
-//   //       });
-//   //     })
-//   //     .catch(err => this.setState({error: err.message}))
-//   // }
+      </div>
 
-//   render() {
-  
-//     return (
-//       <div className="container my-5">
-//         <h1>Search</h1>
 
-//         <form>
-//           <div className="form-group">
-//             <label htmlFor="brandsList">Brand Name:</label>
-//             <input 
-//               list="brand" 
-//               type="text" 
-//               className="form-control"
-//               id="brandsList"
-//               name="search"
-//               value={this.state.search}
-//               onChange={this.handleInputChange}
-//             />
-//             <datalist id="brand">
-//               {
-//                 (this.state.brandsList) 
-//                 ? 
-//                 (this.state.brandsList.map(brand => <option value={brand} key={brand} />)) : "" }
-//             </datalist>
+    )
+  }
+}
 
-//             <button
-//               type="submit"
-//               onClick={this.handleFormSubmit}
-//               className="btn btn-success"
-//             >
-//               Search
-//             </button>
-//           </div>
-//         </form>
-
- 
-//       </div>
-//     )
-//   }
-// }
-
-// export default Search;
+export default Search;
 
 
 
