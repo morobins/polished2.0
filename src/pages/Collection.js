@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react'
+import { Container, Header, Button } from 'semantic-ui-react'
 import API from "../utils/API"
 import Card from "../components/Card/Card"
 
 
 
-class Collection extends React.Component {
+class Collection extends Component {
   //declare state
   state = {
       products: []
@@ -36,7 +36,8 @@ getProds = () => {
           <Card
           key={product.id}
           id={product.id}
-          productName={product.product_name}
+          photo={product.photo}
+          color={product.color}
           brand={product.brand}
         />
         ))}

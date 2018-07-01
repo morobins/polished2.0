@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react'
+import { Container, Header, Button, Form } from 'semantic-ui-react'
 import API from "../utils/API"
 
 const options = [

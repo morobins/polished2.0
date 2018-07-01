@@ -4,12 +4,13 @@ import "./Card.css";
 const Card = props => (
   <div className="card">
     <div className="img-container">
-      <img alt={props.name} src={props.image} />
+      <img alt={props.brand} src={props.photo} />
     </div>
     <div className="content">
       <ul>
+
         <li>
-          <strong>Product Name:</strong> {props.product_name}
+          <strong>Color:</strong> {props.color}
         </li>
         <li>
           <strong>Brand:</strong> {props.brand}
