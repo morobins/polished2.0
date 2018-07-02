@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Container, Header, Button } from 'semantic-ui-react'
+import { Container, Header, Button, Card } from 'semantic-ui-react'
 import API from "../utils/API"
-import Card from "../components/Card/Card"
+import Wrapper from "../components/Wrapper/Wrapper"
+import "../../src/Collection.css"
+
 
 
 
@@ -27,23 +29,47 @@ getProds = () => {
 }
 
 
-  render () {
-    return (
-      <Container>
-        <Header className="title">Your Collection</Header>
+render  () {
+  return (
+    <Container>
+    <Header className="title">Your Collection</Header>
+  <Wrapper>
+    {this.state.products.map(product => (
+    <Card
+      image={product.photo}
+      meta={product.color}
+      description={product.brand}
+      
+      />
+    ))}
+    </Wrapper>
+  </Container>
 
-        {this.state.products.map(product => (
-          <Card
-          key={product.id}
-          id={product.id}
-          photo={product.photo}
-          color={product.color}
-          brand={product.brand}
-        />
-        ))}
-      </Container>
-    )
-  }
+  )
 }
 
+
+}
+
+
 export default Collection;
+
+
+
+// render () {
+//   return (
+//     <Container>
+      
+
+//       {this.state.products.map(product => (
+//         <Card
+//         key={product.id}
+//         id={product.id}
+//         photo={product.photo}
+//         color={product.color}
+//         brand={product.brand}
+//       />
+//       ))}
+//     </Container>
+//   )
+// }
