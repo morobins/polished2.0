@@ -2,12 +2,27 @@ import axios from "axios";
 
 export default {
 
-  getProduct: function(brand) {
+  getProduct: function() {
     return axios.get(`https://secret-caverns-61779.herokuapp.com/api/products`)
   },
 
-  // getProdType: function(prod_type) {
-  //   return axios.get(`http://makeup-api.herokuapp.com/api/v1/products.json?product_type=${prod_type}`)
-  // }
+  getProdName: function(product_name) {
+    return axios.get(`https://secret-caverns-61779.herokuapp.com/api/products?product_name=${product_name}`)
+  },
 
+  getBrand: function(brand) {
+    return axios.get(`https://secret-caverns-61779.herokuapp.com/api/products?brand=${brand}`)
+  },
+
+  getColor: function(color) {
+    return axios.get(`https://secret-caverns-61779.herokuapp.com/api/products?color=${color}`)
+  },
+
+  getCategory: function(category) {
+    return axios.get(`https://secret-caverns-61779.herokuapp.com/api/products?category=${category}`)
+  },
+
+  getProductList: function(query) {
+    return axios.get("https://secret-caverns-61779.herokuapp.com/api/products", {params: query})
+  }
 }
