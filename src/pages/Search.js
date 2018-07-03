@@ -3,6 +3,7 @@ import { Container, Header, Button, Form } from 'semantic-ui-react'
 import API from "../utils/API"
 
 const options = [
+  { key: '', text: 'Choose a category', value: '' },
   { key: 'n', text: 'Nails', value: 'Nails' },
   { key: 'l', text: 'Lips', value: 'Lips' },
   { key: 'f', text: 'Face', value: 'Face' },
