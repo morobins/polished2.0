@@ -10,19 +10,13 @@ const imageStyle = {
 const Navbar = props => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <NavLink className="navbar-brand" to="/" activeClassName="active">
-      <Image style={imageStyle} src={title} />
-    </NavLink>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/collection" activeClassName="active">Collection</NavLink>
+            <NavLink className="nav-link" to="/login" activeClassName="active">Login</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/add" activeClassName="active">Add</NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/search" activeClassName="active">Search</NavLink>
+            <NavLink className="nav-link" to="/signup" activeClassName="active">Sign-up</NavLink>
           </li>
         </ul>
       </div>

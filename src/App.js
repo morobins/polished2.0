@@ -6,14 +6,13 @@ import LoginForm from "./pages/Home";
 import AddForm from "./pages/Add";
 import Collection from "./pages/Collection";
 
-
+//TODO: Show different Navbar for the homepage
 const App = () => {
   return (
     <Router>
       <div className="container-fluid">
         <Navbar />
         <Switch>
-        
         <Route exact path="/" component={LoginForm} />
         <Route exact path="/collection" component={Collection} />
         <Route exact path="/search" component={SearchForm} />

@@ -35,7 +35,7 @@ render  () {
     <Header className="title">Your Collection</Header>
   <Wrapper>
     {this.state.products.map(product => (
-    <Card>
+    <Card raised='true'>
 
     <Card.Content>
         <Image src={product.photo} />
