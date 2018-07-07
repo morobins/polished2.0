@@ -40,6 +40,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/polished2.0');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/polished2');
 
 app.listen(port, () => console.log(`API is listening on port ${port}`));

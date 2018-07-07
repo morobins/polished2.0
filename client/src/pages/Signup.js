@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../utils/API";
 
-class Login extends Component {
+
+class Signup extends Component {
   state = {
     success: false,
     username: "",
@@ -19,20 +20,19 @@ class Login extends Component {
   // Method to register a new user
   register = (e) => {
     e.preventDefault();
-    API
-      .register({ username: this.state.username, password: this.state.password })
-      .then(res => {
-        console.log(res.data);
-        this.setState({ success: res.data })
+    var user = API.register({ username: this.state.username, password: this.state.password });
+      // .then(res => {
+      //   console.log(res.data);
+        this.setState({ success: true })
 
-      })
-      .catch(err => console.log(err.response.data));
+      // })
+      // .catch(err => console.log(err.response.data));
   }
 
   render() {
     // If Signup was a success, take them to the Login page
     if (this.state.success) {
-      return <Redirect to="/loginForm" />
+      return <Redirect to="/collection" />
     }
 
     return (
@@ -72,4 +72,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signup;

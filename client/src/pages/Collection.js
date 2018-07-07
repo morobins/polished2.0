@@ -3,7 +3,7 @@ import { Container, Header, Button, Card } from 'semantic-ui-react'
 import API from "../utils/API"
 import Wrapper from "../components/Wrapper/Wrapper"
 import "../../src/Collection.css"
-
+import {Redirect} from 'react-router-dom';
 
 
 
@@ -49,7 +49,7 @@ render  () {
 
      // If user isn't logged in, don't let them see this page
      if (!this.state.isLoggedIn) {
-      return <Redirect to="/login"/>
+      return <Redirect to="/login" />
     }
 
   return (

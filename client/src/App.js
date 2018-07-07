@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import SearchForm from "./pages/Search";
-import LoginForm from "./pages/Home";
+import LoginForm from "./pages/Login";
 import AddForm from "./pages/Add";
 import Collection from "./pages/Collection";
+import Signup from "./pages/Signup";
+import Home from "./pages/Home";
 
 
 // const fakeAuth = {
@@ -36,20 +38,20 @@ class App extends Component {
     response: ''
   };
 
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
-  }
+  // componentDidMount() {
+  //   this.callApi()
+  //     .then(res => this.setState({ response: res.express }))
+  //     .catch(err => console.log(err));
+  // }
 
-  callApi = async () => {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
+  // callApi = async () => {
+  //   const response = await fetch('/api/hello');
+  //   const body = await response.json();
 
-    if (response.status !== 200) throw Error(body.message);
-    console.log(body);
-    return body;
-  };
+  //   if (response.status !== 200) throw Error(body.message);
+  //   console.log(body);
+  //   return body;
+  // };
 
 render () {
   return (
@@ -58,10 +60,12 @@ render () {
         <Navbar />
         <Switch>
         
-        <Route exact path="/" component={LoginForm} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={LoginForm} />
         <Route path="/collection" component={Collection} />
         <Route exact path="/search" component={SearchForm} />
         <Route exact path="/add" component={AddForm} />
+        <Route exact path="/signup" component={Signup} />
           <Route render={() => <h1 className="text-center">You didn't match a route!</h1>}
           />
         </Switch>

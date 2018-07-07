@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import title from "../images/title.jpg";
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 import API from "../utils/API";
+import Signup from "../pages/Signup";
 
 
 
@@ -105,7 +106,7 @@ class LoginForm extends Component {
             </Form>
             <Message>
               {/* LINK TO SIGN UP/ REGISTER PAGE!!! */}
-              New to us? <a href='#'>Sign Up</a>
+              New to us? <Link to="/signup">Sign Up!!!!!!</Link>
             </Message>
           </Grid.Column>
         </Grid>
