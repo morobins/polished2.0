@@ -5,6 +5,7 @@ import Wrapper from "../components/Wrapper";
 import Link from "react-router-dom";
 
 const options = [
+
   { key: '', text: 'Select a category', value: '' },
   { key: 'n', text: 'Nails', value: 'Nails' },
   { key: 'l', text: 'Lips', value: 'Lips' },

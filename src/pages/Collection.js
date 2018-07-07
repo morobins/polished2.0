@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Header, Button, Card } from 'semantic-ui-react'
+import { Container, Header, Button, Card, Image } from 'semantic-ui-react'
 import API from "../utils/API"
 import Wrapper from "../components/Wrapper/Wrapper"
 import "../../src/Collection.css"
@@ -35,12 +35,28 @@ render  () {
     <Header className="title">Your Collection</Header>
   <Wrapper>
     {this.state.products.map(product => (
-    <Card
-      image={product.photo}
-      meta={product.color}
-      description={product.brand}
+    <Card raised='true'>
+
+    <Card.Content>
+        <Image src={product.photo} />
+
+        <Card.Meta>{product.color}</Card.Meta>
+        <Card.Description>
+        {product.brand}
+        </Card.Description>
+        </Card.Content>
+      <Card.Content extra>
+        <div className='ui two buttons'>
+          <Button basic color='teal'>
+            Edit
+          </Button>
+          <Button basic color='pink'>
+            Delete
+          </Button>
+        </div>
+      </Card.Content>
+      </Card>
       
-      />
     ))}
     </Wrapper>
   </Container>
