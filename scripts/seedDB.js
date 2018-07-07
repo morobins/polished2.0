@@ -1,14 +1,11 @@
 const mongoose = require("mongoose");
-const db = require("../models");
+const Product = require("../models/product");
 mongoose.Promise = global.Promise;
 
 // This file empties the Books collection and inserts the books below
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/polishedDB",
-  {
-    useMongoClient: true
-  }
+  process.env.MONGODB_URI || "mongodb://localhost/polishedDB"
 );
 
 const productSeed = [
@@ -916,11 +913,11 @@ const productSeed = [
   }
 ]
 
-db.Product
+Product
   .remove({})
-  .then(() => db.Product.collection.insertMany(productSeed))
+  .then(() => Product.insertMany(productSeed))
   .then(data => {
-    console.log(data.insertedIds.length + "products inserted!");
+    console.log("products inserted!");
     process.exit(0);
   })
   .catch(err => {
