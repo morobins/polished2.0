@@ -16,7 +16,7 @@ class Collection extends Component {
 
   getProds = () => {
     API.getProduct()
-      .then(res => {
+      .then(res =>{
         console.log(res)
         this.setState({
           products: res.data
