@@ -25,6 +25,13 @@ class Collection extends Component {
       .catch(err => console.log(err));
   }
 
+  deletProduct = id => {
+    API.deleteproduct(id)
+    //get the newly updated list
+      .then(res => this.getProds())
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <Container>
@@ -46,7 +53,7 @@ class Collection extends Component {
                   <Button basic color='teal'>
                     Edit
           </Button>
-                  <Button basic color='pink'>
+                  <Button basic color='pink' onClick={() => this.deleteBook(book._id)}>
                     Delete
           </Button>
                 </div>

@@ -9,28 +9,29 @@ import LoginNav from "./components/LoginNav/LoginNav"
 
 
 
-class App extends Component {
+// class App extends Component {
 
-    state= {
-      isLoggedIn: false
-    }
-    handleAuth(data){
-      this.setState({isLoggedIn: data})
-    }
-    render(){
-      if(this.state.isLoggedIn){
-        return <LoggedIn />
-      }else{
-        return <LoggedOut />
-      }
+//     state= {
+//       isLoggedIn: false
+//     }
+//     handleAuth(data){
+//       this.setState({isLoggedIn: data})
+//     }
+//     render(){
+//       if(this.state.isLoggedIn){
+//         return <LoggedIn />
+//       }else{
+//         return <LoggedOut />
+//       }
     
-    }
+//     }
 
-}
+// }
 
 
 //TODO: Show different Navbar for the homepage
-const LoggedIn = () => {
+//const LoggedIn = () => {
+const App = () => {
   return (
     <Router>
       <div className="container-fluid">
@@ -48,21 +49,21 @@ const LoggedIn = () => {
   )
 }
 
-const LoggedOut = () => {
-  return (
-    <Router>
-      <div className="container-fluid">
-        <LoginNav />
-        <Switch>
-        <Route exact path="/" component={LoginForm} handleAuth={this.handleAuth}/>
-        <Route exact path="/collection" component={Collection} />
-        <Route exact path="/search" component={SearchForm} />
-        <Route exact path="/add" component={AddForm} />
-          <Route render={() => <h1 className="text-center">You didn't match a route!</h1>}
-          />
-        </Switch>
-      </div>
-    </Router>
-  )
-}
+// const LoggedOut = () => {
+//   return (
+//     <Router>
+//       <div className="container-fluid">
+//         <LoginNav />
+//         <Switch>
+//         <Route exact path="/" component={LoginForm} handleAuth={this.handleAuth}/>
+//         <Route exact path="/collection" component={Collection} />
+//         <Route exact path="/search" component={SearchForm} />
+//         <Route exact path="/add" component={AddForm} />
+//           <Route render={() => <h1 className="text-center">You didn't match a route!</h1>}
+//           />
+//         </Switch>
+//       </div>
+//     </Router>
+//   )
+// }
 export default App;
