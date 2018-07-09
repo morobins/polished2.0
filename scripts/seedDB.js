@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Product = require("../models/product");
 mongoose.Promise = global.Promise;
 
-// This file empties the Books collection and inserts the books below
+// This file empties the Products collection and inserts the products below
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/polishedDB"

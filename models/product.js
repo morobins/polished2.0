@@ -10,7 +10,7 @@ const productSchema = new Schema ({
   product_category: { type: String, required: true }
 });
 
-//this is how we can talk to our database through "find all, creat, etc"
+//this is how we can talk to our database through "find all, create, etc"
 const Product = mongoose.model("Product", productSchema);
 
 module.exports = Product;
