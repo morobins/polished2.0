@@ -25,8 +25,8 @@ class Collection extends Component {
       .catch(err => console.log(err));
   }
 
-  deletProduct = id => {
-    API.deleteproduct(id)
+  deleteProduct = id => {
+    API.deleteProduct(id)
     //get the newly updated list
       .then(res => this.getProds())
       .catch(err => console.log(err));
@@ -53,7 +53,7 @@ class Collection extends Component {
                   <Button basic color='teal'>
                     Edit
           </Button>
-                  <Button basic color='pink' onClick={() => this.deleteBook(book._id)}>
+                  <Button basic color='pink' onClick={() => this.deleteProduct(product._id)}>
                     Delete
           </Button>
                 </div>

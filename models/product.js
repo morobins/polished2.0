@@ -7,7 +7,7 @@ const productSchema = new Schema ({
   color: { type: String, required: true },
   notes: String,
   date_of_purchase: Date,
-  product_category: { type: String, required: true }
+  product_category: { type: String}
 });
 
 //this is how we can talk to our database through "find all, create, etc"
