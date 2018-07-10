@@ -19,7 +19,7 @@ export default {
   addProduct: function (prodData) {
     return axios.post("/api/products", prodData);
   },
-  
+
     // getProdName: function(product_name) {
     //   return axios.get(`https://secret-caverns-61779.herokuapp.com/api/products?product_name=${product_name}`)
     // },
@@ -35,6 +35,15 @@ export default {
     // getCategory: function(category) {
     //   return axios.get(`https://secret-caverns-61779.herokuapp.com/api/products?category=${category}`)
     // },
+
+    /* 
+    {
+      brand: this.state.brandSearch,
+      color: this.state.colorSearch,
+      category: this.state.categorySearch,
+      product_name: this.state.productSearch
+    }
+    */
 
     getProductList: function (query) {
       return axios.get("/api/products", { params: query })
