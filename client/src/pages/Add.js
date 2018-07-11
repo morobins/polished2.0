@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react'
-import API from "../utils/API"
+import React, { Component } from 'react';
+import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react';
+import API from "../utils/API";
+import FileUpload from "../components/FileUpload/FileUpload";
 
 const options = [
   { key: 'n', text: 'Nails', value: 'Nails' },
@@ -102,17 +103,7 @@ class AddForm extends Component {
             name="notes"
             label='Notes'
           />
-          <Label as="label" basic htmlFor="upload">
-            <Button icon="upload"
-              label={{
-                basic: true,
-                content: 'Select photo'
-              }}
-              labelPosition="right"
-            />
-            <input hidden id="upload" multiple type="file" />
-          </Label>
-
+          <FileUpload/>
           <Button type='submit' disabled={!(this.state.brand && this.state.color)} onClick={this.handleFormSubmit}>Submit</Button>
         </Form>
       </Container>
@@ -122,3 +113,14 @@ class AddForm extends Component {
 }
 
 export default AddForm
+
+// <Label as="label" basic htmlFor="upload">
+//             <Button icon="upload"
+//               label={{
+//                 basic: true,
+//                 content: 'Select photo'
+//               }}
+//               labelPosition="right"
+//             />
+//             <input hidden id="upload" multiple type="file" />
+//           </Label>
