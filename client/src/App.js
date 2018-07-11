@@ -28,7 +28,7 @@ import LoginNav from "./components/LoginNav/LoginNav"
 
 // }
 
-=======
+
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 

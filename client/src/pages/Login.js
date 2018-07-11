@@ -56,7 +56,7 @@ class LoginForm extends Component {
 
   render () {
 
-    if (this.state.loggedIn) {
+    if (this.state.isLoggedIn) {
       return <Redirect to="/collection"/>
     }
 
