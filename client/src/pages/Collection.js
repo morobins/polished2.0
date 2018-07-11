@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
-import { Container, Header, Button, Card, Image } from 'semantic-ui-react'
-import API from "../utils/API"
-import Wrapper from "../components/Wrapper/Wrapper"
-import "../../src/Collection.css"
+import React, { Component } from 'react';
+import { Container, Header, Button, Card, Image } from 'semantic-ui-react';
+import API from "../utils/API";
+import Wrapper from "../components/Wrapper/Wrapper";
+import "../../src/Collection.css";
 
 class Collection extends Component {
   //declare state
   state = {
     products: []
-  }
+  };
 
   componentDidMount() {
     this.getProds();
-  }
+  };
 
   getProds = () => {
     API.getProducts()
@@ -23,7 +23,14 @@ class Collection extends Component {
         })
       })
       .catch(err => console.log(err));
-  }
+  };
+
+  updateProd = id => {
+    API.updateProduct(id)
+    //get updated product
+      .then (res => this.getProds())
+      .catch (err => console.log(err));
+  };
 
   render() {
     return (
@@ -43,7 +50,7 @@ class Collection extends Component {
               </Card.Content>
               <Card.Content extra>
                 <div className='ui two buttons'>
-                  <Button basic color='teal'>
+                  <Button basic color='teal' onClick={() => this.updateProd(product._id)}>
                     Edit
           </Button>
                   <Button basic color='pink'>
@@ -58,7 +65,7 @@ class Collection extends Component {
       </Container>
 
     )
-  }
-}
+  };
+};
 
 export default Collection;
