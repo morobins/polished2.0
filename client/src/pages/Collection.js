@@ -3,15 +3,19 @@ import { Container, Header, Button, Card, Image } from 'semantic-ui-react'
 import API from "../utils/API"
 import Wrapper from "../components/Wrapper/Wrapper"
 import "../../src/Collection.css"
+import {Redirect} from 'react-router-dom';
 
 class Collection extends Component {
   //declare state
   state = {
-    products: []
+    products: [],
+    isLoggedIn: true,
+    username: ""
   }
 
   componentDidMount() {
     this.getProds();
+    this.loginCheck()
   }
 
   getProds = () => {
@@ -24,6 +28,18 @@ class Collection extends Component {
       })
       .catch(err => console.log(err));
   }
+    // Check login status
+    loginCheck = () => {
+      API
+        .loginCheck()
+        .then(res => this.setState({
+          isLoggedIn: res.data.isLoggedIn, username: res.data.username
+        }))
+        .catch(err => {
+          console.log(err);
+          this.setState({isLoggedIn: false})
+        })
+    }
 
   deleteProduct = id => {
     API.deleteProduct(id)
@@ -33,6 +49,12 @@ class Collection extends Component {
   };
 
   render() {
+
+     // If user isn't logged in, don't let them see this page
+     if (!this.state.isLoggedIn) {
+      return <Redirect to="/login" />
+    }
+
     return (
       <Container>
         <Header className="title">Your Collection</Header>

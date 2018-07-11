@@ -58,7 +58,7 @@ class Search extends Component {
       category: this.state.categorySearch,
       product_name: this.state.productSearch
     }).then(res => {
-      console.log(res.data);
+      console.log(res);
       const filteredData = res.data.filter(product => {
 
         let matchedProduct = false;

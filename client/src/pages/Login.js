@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import title from "../images/title.jpg";
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
+import API from "../utils/API";
+import Signup from "../pages/Signup";
 
 
 
@@ -9,22 +11,45 @@ class LoginForm extends Component {
   state = {
     isLoggedIn: false,
     email: "",
-    password: ""
+    password: "",
+    username: ""
   }
 
-  componentDidMount() {
-    API.checkLogin()
-      .then(res=> {
-        if (!res.data) {
-          this.setState({
-            isLoggedIn: false
-          })
-        } else {
-          this.setState({
-            isLoggedIn: true
-          })
-        }
+  // componentDidMount() {
+  //   API.checkLogin()
+  //     .then(res=> {
+  //       if (!res.data) {
+  //         this.setState({
+  //           isLoggedIn: false
+  //         })
+  //       } else {
+  //         this.setState({
+  //           isLoggedIn: true
+  //         })
+  //       }
+  //     })
+  // }
+
+  handleInputChange = e => {
+    const { name, value } = e.target;
+
+    this.setState({
+      [name]: value
+    })
+  }
+
+  // Method to handle user login, should redirect to main page when done
+  login = (e) => {
+    e.preventDefault();
+    console.log(this.state.username, this.state.password);
+    API
+      .login({username: this.state.username, password: this.state.password})
+      .then(res => {
+        console.log(res.data);
+        this.setState({isLoggedIn: true})
+
       })
+      .catch(err => console.log(err.response));
   }
 
 
@@ -56,22 +81,25 @@ class LoginForm extends Component {
             </Header>
             <Form size='large'>
               <Segment stacked>
-                <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
+                <Form.Input fluid icon='user' name="username" onChange={this.handleInputChange} value={this.state.username} iconPosition='left' placeholder='E-mail address' />
                 <Form.Input
                   fluid
                   icon='lock'
                   iconPosition='left'
                   placeholder='Password'
                   type='password'
+                  name="password"
+                  onChange={this.handleInputChange}
+                  value={this.state.password}
                 />
     
-                <Button color='teal' fluid size='large'>
+                <Button color='teal' fluid size='large' onClick={this.login}>
                   Login
                 </Button>
               </Segment>
             </Form>
             <Message>
-              New to us? <a href='#'>Sign Up</a>
+              New to us? <Link to="/signup">Sign Up!!!!!!</Link>
             </Message>
           </Grid.Column>
         </Grid>
