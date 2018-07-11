@@ -9,7 +9,7 @@ const imageStyle = {
 
 const Home = () => 
 <Container>
-<Image centered='ture' style={imageStyle} src={title}/>
+<Image centered='true' style={imageStyle} src={title}/>
 </Container>
 
 

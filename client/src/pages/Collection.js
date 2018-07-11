@@ -41,6 +41,13 @@ class Collection extends Component {
         })
     }
 
+  deleteProduct = id => {
+    API.deleteProduct(id)
+    //get the newly updated list
+      .then(res => this.getProds())
+      .catch(err => console.log(err));
+  };
+
   render() {
 
      // If user isn't logged in, don't let them see this page
@@ -68,7 +75,7 @@ class Collection extends Component {
                   <Button basic color='teal'>
                     Edit
           </Button>
-                  <Button basic color='pink'>
+                  <Button basic color='pink' onClick={() => this.deleteProduct(product._id)}>
                     Delete
           </Button>
                 </div>
