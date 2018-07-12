@@ -8,11 +8,11 @@ const imageStyle = {
 }
 
 const Navbar = props => {
-  return (
+  if (props.isLoggedIn) { 
+    return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <NavLink className="navbar-brand" to="/" activeClassName="active">
-      <Image style={imageStyle} src={title} />
-    </NavLink>
+
+      <Image className="navbar-brand" style={imageStyle} src={title} />
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item">
@@ -23,11 +23,29 @@ const Navbar = props => {
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/search" activeClassName="active">Search</NavLink>
+            </li>
+            <li>
+            <NavLink className="nav-link" to="/logout" activeClassName="active">Logout</NavLink>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  )} else { 
+    return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/login" activeClassName="active">Login</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/signup" activeClassName="active">Sign-up</NavLink>
           </li>
         </ul>
       </div>
     </nav>
   )
+}
 }
 
 export default Navbar;
