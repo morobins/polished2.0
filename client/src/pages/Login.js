@@ -30,6 +30,14 @@ class LoginForm extends Component {
   //     })
   // }
 
+  componentDidUpdate() {
+    if (this.state.isLoggedIn !== this.props.isLoggedIn){
+    this.setState({
+      isLoggedIn: this.props.isLoggedIn
+    })
+  }
+  }
+
   handleInputChange = e => {
     const { name, value } = e.target;
 
@@ -46,10 +54,10 @@ class LoginForm extends Component {
       .login({username: this.state.username, password: this.state.password})
       .then(res => {
         console.log(res.data);
-        this.setState({isLoggedIn: true})
-
-      })
-      .catch(err => console.log(err.response));
+        // this.setState({isLoggedIn: true})
+        this.props.handleAuth(true);
+      })  
+      .catch(err => console.log(err));
   }
 
 
@@ -57,16 +65,11 @@ class LoginForm extends Component {
   render () {
 
     if (this.state.isLoggedIn) {
-      return <Redirect to="/collection"/>
+      return <Redirect to="/collection" />
     }
 
     return (
-      <div className='login-form'>
-        {/*
-          Heads up! The styles below are necessary for the correct render of this example.
-          You can do same with CSS, the main idea is that all the elements up to the `Grid`
-          below must have a height of 100%.
-        */}
+      <div className='login-form' >
         <style>{`
           body > div,
           body > div > div,
@@ -99,7 +102,7 @@ class LoginForm extends Component {
               </Segment>
             </Form>
             <Message>
-              New to us? <Link to="/signup">Sign Up!!!!!!</Link>
+              New to us? <Link to="/signup">Sign Up!!!!!!!!</Link>
             </Message>
           </Grid.Column>
         </Grid>
