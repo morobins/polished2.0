@@ -73,7 +73,7 @@ class Signup extends Component {
                   header='Action Forbidden'
                   content='You can only sign up for an account once with a given e-mail address.'
                 />
-                <Button color='pink' fluid size='large' onClick={this.login}>
+                <Button color='pink' fluid size='large' onClick={this.register}>
                   Sign Up
                 </Button>
               </Segment>
