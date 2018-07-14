@@ -9,20 +9,18 @@ class Collection extends Component {
   //declare state
   state = {
     products: [],
-    isLoggedIn: true,
     username: ""
   }
 
   componentDidMount() {
     this.getProds();
-    this.loginCheck()
   }
 
-  componentDidUpdate() {
-    this.setState({
-      isLoggedIn: this.props.isLoggedIn
-    })
-  }
+  // componentDidUpdate() {
+  //   this.setState({
+  //     isLoggedIn: this.props.isLoggedIn
+  //   })
+  // }
 
   getProds = () => {
     API.getProducts()
@@ -42,17 +40,17 @@ class Collection extends Component {
       .catch (err => console.log(err));
   }
     // Check login status
-    loginCheck = () => {
-      API
-        .loginCheck()
-        .then(res => this.setState({
-          isLoggedIn: res.data.isLoggedIn, username: res.data.username
-        }))
-        .catch(err => {
-          console.log(err);
-          this.setState({isLoggedIn: false})
-        })
-    }
+    // loginCheck = () => {
+    //   API
+    //     .loginCheck()
+    //     .then(res => this.setState({
+    //       isLoggedIn: res.data.isLoggedIn, username: res.data.username
+    //     }))
+    //     .catch(err => {
+    //       console.log(err);
+    //       this.setState({isLoggedIn: false})
+    //     })
+    // }
 
   deleteProduct = id => {
     API.deleteProduct(id)
@@ -62,9 +60,9 @@ class Collection extends Component {
   };
 
   render() {
-
+    console.log(this.props.isLoggedIn);
      // If user isn't logged in, don't let them see this page
-     if (!this.state.isLoggedIn) {
+     if (!this.props.isLoggedIn) {
       return <Redirect to="/login" />
     }
 

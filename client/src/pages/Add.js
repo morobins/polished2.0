@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react'
 import API from "../utils/API"
+import {Redirect} from 'react-router-dom';
 
 const options = [
   { key: 'n', text: 'Nails', value: 'Nails' },
@@ -64,6 +65,10 @@ class AddForm extends Component {
 
 
   render() {
+
+    if (!this.props.isLoggedIn) {
+      return <Redirect to="/login" />
+    }
 
     return (
       <Container text>

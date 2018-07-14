@@ -57,13 +57,18 @@ class App extends Component {
         {/*<div>{props.isLoggedIn}</div>}*/}
           <Navbar isLoggedIn={this.state.isLoggedIn} logout={this.logout}/>
           <Switch>
-          <Route exact path="/" component={LoginForm}  handleAuth={this.handleAuth}/>
+
           <Route exact path="/" component={Home} />
           <Route exact path="/collection" render={() => <Collection isLoggedIn={this.state.isLoggedIn}/>} />
-          <Route exact path="/search" component={SearchForm} />
-          <Route exact path="/add" component={AddForm} />
+
+          <Route exact path="/search" render={() => <SearchForm isLoggedIn={this.state.isLoggedIn}/>} />
+
+          <Route exact path="/add" component={() => <AddForm isLoggedIn={this.state.isLoggedIn} />} />
+
           <Route exact path="/login" render={() => <LoginForm isLoggedIn={this.state.isLoggedIn} handleAuth={this.handleAuth} />} />
+
           <Route exact path="/logout" component={Home} />
+
           <Route exact path="/signup" component={Signup} />
             <Route render={() => <h1 className="text-center">You didn't match a route!</h1>}
             />
@@ -75,48 +80,4 @@ class App extends Component {
 
 }
 
-
-//TODO: Show different Navbar for the homepage
-// const LoggedIn = () => {
-// // const App = (props) => {
-//   console.log(props);
-  
-//   return (
-//     <Router>
-//       <div className="container-fluid">
-//       {/*<div>{props.isLoggedIn}</div>}*/}
-//         <Navbar   />
-//         <Switch>
-//         <Route exact path="/" component={LoginForm}  handleAuth={this.handleAuth}/>
-//         <Route exact path="/" component={Home} />
-//         <Route exact path="/collection" component={Collection} />
-//         <Route exact path="/search" component={SearchForm} />
-//         <Route exact path="/add" component={AddForm} />
-//         <Route exact path="/login" render={() => <LoginForm isLoggedIn={this.state.isLoggedIn} />} />
-//         <Route exact path="/signup" component={Signup} />
-//           <Route render={() => <h1 className="text-center">You didn't match a route!</h1>}
-//           />
-//         </Switch>
-//       </div>
-//     </Router>
-//   )
-// }
-
-// const LoggedOut = () => {
-//   return (
-//     <Router>
-//       <div className="container-fluid">
-//         <LoginNav />
-//         <Switch>
-//         <Route exact path="/" component={LoginForm} handleAuth={this.handleAuth}/>
-//         <Route exact path="/collection" component={Collection} />
-//         <Route exact path="/search" component={SearchForm} />
-//         <Route exact path="/add" component={AddForm} />
-//           <Route render={() => <h1 className="text-center">You didn't match a route!</h1>}
-//           />
-//         </Switch>
-//       </div>
-//     </Router>
-//   )
-// }
 export default App;

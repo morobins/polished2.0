@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container, Header, Button, Form, Card, Image } from 'semantic-ui-react'
 import API from "../utils/API"
 import Wrapper from "../components/Wrapper";
-import Link from "react-router-dom";
+import {Redirect} from 'react-router-dom';
 
 const options = [
 
@@ -94,6 +94,11 @@ class Search extends Component {
   }
 
   render() {
+
+    if (!this.props.isLoggedIn) {
+      return <Redirect to="/login" />
+    }
+
     return (
       <div className="container my-5">
         {this.state.showProducts ? (

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Image, Button, Menu } from 'semantic-ui-react'
 import title from "../../images/title.jpg";
 import "../Navbar/Navbar.css"
@@ -29,7 +29,7 @@ const Navbar = props => {
   if (props.isLoggedIn) {
     return (
       <Menu secondary>
-        <Menu.Item><Image className="navbar-brand" style={imageStyle} src={title} /></Menu.Item>
+        <Menu.Item as={Link} to="/"><Image className="navbar-brand" style={imageStyle} src={title} /></Menu.Item>
         <Menu.Item name='collection'><NavLink className="nav-link" color="black" to="/collection" activeClassName="active"> My Collection</NavLink></Menu.Item>
         <Menu.Item name='Add'><NavLink className="nav-link" to="/add" activeClassName="active">Add</NavLink></Menu.Item>
         <Menu.Item name='Search'><NavLink className="nav-link" to="/search" activeClassName="active">Search</NavLink></Menu.Item>
@@ -46,7 +46,7 @@ const Navbar = props => {
   } else {
     return (
       <Menu secondary>
-        <Menu.Item><Image className="navbar-brand" style={imageStyle} src={title} /></Menu.Item>
+        <Menu.Item as={Link} to="/"><Image className="navbar-brand" style={imageStyle} src={title} /></Menu.Item>
         <Menu.Item name='collection'><NavLink className="nav-link" to="/login" activeClassName="active">Login</NavLink></Menu.Item>
         <Menu.Item>
           <NavLink className="nav-link" to="/signup" activeClassName="active">Sign-up</NavLink></Menu.Item>

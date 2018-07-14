@@ -15,20 +15,20 @@ class LoginForm extends Component {
     username: ""
   }
 
-  // componentDidMount() {
-  //   API.checkLogin()
-  //     .then(res=> {
-  //       if (!res.data) {
-  //         this.setState({
-  //           isLoggedIn: false
-  //         })
-  //       } else {
-  //         this.setState({
-  //           isLoggedIn: true
-  //         })
-  //       }
-  //     })
-  // }
+  componentDidMount() {
+    API.loginCheck()
+      .then(res=> {
+        if (!res.data) {
+          this.setState({
+            isLoggedIn: false
+          })
+        } else {
+          this.setState({
+            isLoggedIn: true
+          })
+        }
+      })
+  }
 
   componentDidUpdate() {
     if (this.state.isLoggedIn !== this.props.isLoggedIn) {
@@ -63,8 +63,8 @@ class LoginForm extends Component {
 
 
   render() {
-
-    if (this.state.isLoggedIn) {
+    console.log("hi");
+    if (this.props.isLoggedIn) {
       return <Redirect to="/collection" />
     }
 
@@ -117,4 +117,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm
+export default LoginForm;

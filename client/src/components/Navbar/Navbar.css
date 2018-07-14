@@ -5,3 +5,13 @@ a {
 a:hover {
   color: teal;
 }
+
+.ui.secondary.menu .dropdown.item:hover, .ui.secondary.menu .link.item:hover, .ui.secondary.menu a.item:hover {
+  background: white;
+  color: rgba(0,0,0,.95);
+}
+
+.ui.secondary.menu .dropdown.item:hover, .ui.secondary.menu .link.item:hover, .ui.secondary.menu a.item:hover {
+  background: white;
+  color: rgba(0,0,0,.95);
+}
