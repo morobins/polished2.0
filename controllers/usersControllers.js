@@ -14,7 +14,7 @@ module.exports = {
   findById: function (req, res) {
     db
       .User
-      .findById(req.params.id)
+      .findById(req.user._id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -29,7 +29,7 @@ module.exports = {
     console.log("updating user");
     console.log(req.body)
     User.findOneAndUpdate({
-      _id: req.params.id
+      _id: req.user._id
     }, { $push: { userProds: req.body } })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

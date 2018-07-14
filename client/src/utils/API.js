@@ -30,7 +30,7 @@ export default {
   },
 
   //retrieve all products from user's array
-  getUserProds: function (id) {
+  getUserProds: function() {
     return axios.get("/api/users")
   },
 

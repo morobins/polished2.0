@@ -36,7 +36,7 @@ router
 
 // Matches with "/api/user/:id"
 router
-  .route('/:id')
+  .route('/')
   .get(usersController.findById)
   .delete(usersController.remove)
   .put(usersController.update)
