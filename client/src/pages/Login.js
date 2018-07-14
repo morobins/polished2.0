@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import title from "../images/title.jpg";
-import {Redirect, Link} from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import API from "../utils/API";
 import Signup from "../pages/Signup";
 
@@ -31,11 +31,11 @@ class LoginForm extends Component {
   // }
 
   componentDidUpdate() {
-    if (this.state.isLoggedIn !== this.props.isLoggedIn){
-    this.setState({
-      isLoggedIn: this.props.isLoggedIn
-    })
-  }
+    if (this.state.isLoggedIn !== this.props.isLoggedIn) {
+      this.setState({
+        isLoggedIn: this.props.isLoggedIn
+      })
+    }
   }
 
   handleInputChange = e => {
@@ -51,18 +51,18 @@ class LoginForm extends Component {
     e.preventDefault();
     console.log(this.state.username, this.state.password);
     API
-      .login({username: this.state.username, password: this.state.password})
+      .login({ username: this.state.username, password: this.state.password })
       .then(res => {
         console.log(res.data);
         // this.setState({isLoggedIn: true})
         this.props.handleAuth(true);
-      })  
+      })
       .catch(err => console.log(err));
   }
 
 
 
-  render () {
+  render() {
 
     if (this.state.isLoggedIn) {
       return <Redirect to="/collection" />
@@ -77,7 +77,7 @@ class LoginForm extends Component {
             height: 100%;
           }
         `}</style>
-        <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+        <Grid textAlign='center' style={{ height: '100%' }} >
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
               Log-in to your account
@@ -95,7 +95,12 @@ class LoginForm extends Component {
                   onChange={this.handleInputChange}
                   value={this.state.password}
                 />
-    
+                <Message
+                  error
+                  header='Action Forbidden'
+                  content='You can only sign up for an account once with a given e-mail address.'
+                />
+
                 <Button color='teal' fluid size='large' onClick={this.login}>
                   Login
                 </Button>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import { Grid, Header, Segment, Button, Form, Message } from 'semantic-ui-react'
 import API from "../utils/API";
 
 
@@ -9,11 +10,11 @@ class Signup extends Component {
     username: "",
     password: ""
   }
-  
+
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
-      [name] : value
+      [name]: value
     })
   }
 
@@ -26,7 +27,7 @@ class Signup extends Component {
         this.setState({ success: true })
 
       })
-      // .catch(err => console.log(err.response.data));
+    // .catch(err => console.log(err.response.data));
   }
 
   render() {
@@ -36,37 +37,49 @@ class Signup extends Component {
     }
 
     return (
-      <div className="container my-5">
-        <div className="row justify-content-center">
-          <form>
-            <h3>Sign Up!</h3>
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChange}
-                className="form-control"
-                placeholder="Username" />
-              <small id="usernameHelp" className="form-text text-muted">Enter your username</small>
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                className="form-control"
-                placeholder="Password"
-              />
-            </div>
 
-            <button type="submit" className="btn btn-success" onClick={this.register}>Sign Up!</button>
-          </form>
-
-        </div>
+      <div className='login-form' >
+        <style>{`
+          body > div,
+          body > div > div,
+          body > div > div > div.login-form {
+            height: 100%;
+          }
+        `}</style>
+        <Grid textAlign='center' style={{ height: '100%' }} >
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as='h2' color='pink' textAlign='center'>
+              Get Polished!
+            </Header>
+            <Form size='large'>
+              <Segment stacked>
+                <Form.Input fluid icon='user' iconPosition='left' name="username" type="text"
+                  value={this.state.username}
+                  onChange={this.handleInputChange}
+                  label='Email' placeholder='beauty@full.com' />
+                <Form.Input
+                  fluid
+                  icon='lock'
+                  iconPosition='left'
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  placeholder="Password"
+                  label='Password'
+                />
+                <Message
+                  error
+                  header='Action Forbidden'
+                  content='You can only sign up for an account once with a given e-mail address.'
+                />
+                <Button color='pink' fluid size='large' onClick={this.login}>
+                  Sign Up
+                </Button>
+              </Segment>
+            </Form>
+          </Grid.Column>
+        </Grid>
       </div>
     )
   }
