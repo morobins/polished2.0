@@ -115,9 +115,8 @@ class Search extends Component {
                     <Card.Description>
                       Color: {product.color}
                     </Card.Description>
-                    //TODO: ternary operator
                     <Card.Description>
-                      {product.product_name}
+                      {product.product_name !== "Null" ? product.product_name : ""}
                     </Card.Description>
                   </Card.Content>
                   <Card.Content extra>
