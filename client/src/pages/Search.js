@@ -129,7 +129,9 @@ class Search extends Component {
             <Container text>
               <Header as='h1' content='Search your Collection' textAlign='center' />
               <Form verticalAlign='middle' >
-                <Form.Select options={options} placeholder='Search by Product Category' />
+                <Form.Select>
+                  <option value='nails'>Nails</option>
+                </Form.Select>
                 <Form.Field>
                   <label>Search by Brand</label>
                   <input placeholder='Brand' type='text' name='brandSearch'
