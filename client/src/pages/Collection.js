@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Container, Header, Button, Card, Image } from 'semantic-ui-react'
 import API from "../utils/API"
 import Wrapper from "../components/Wrapper/Wrapper"
-import "../../src/Collection.css"
 import {Redirect} from 'react-router-dom';
 
 class Collection extends Component {
@@ -64,7 +63,7 @@ class Collection extends Component {
 
     return (
       <Container>
-        <Header className="title">Your Collection</Header>
+        <Header className="title">My Collection</Header>
         <Wrapper>
           {this.state.products.map(product => (
             <Card raised='true'>

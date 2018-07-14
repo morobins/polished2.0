@@ -66,10 +66,10 @@ class AddForm extends Component {
 
     return (
       <Container text>
-        <Header as='h1' content='Add a Product' textAlign='center' />
+        <Header as='h1' content='Add to My Collection' textAlign='center' />
         <Form verticalAlign='middle' >
           <Form.Select options={options}
-            placeholder='Select a Product Category' />
+            placeholder='Select a Category' />
           <Form.Field>
             <label>Brand</label>
             <input
