@@ -46,7 +46,7 @@ module.exports = {
       .register(new User({username: req.body.username}), req.body.password, function (err) {
         if (err) {
           console.log('error while user register!', err);
-          return res.status(422).json(err);
+          return res.json({error: err});
         }
         console.log('user registered!');
         res.json(true);

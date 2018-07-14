@@ -22,6 +22,7 @@ class AddForm extends Component {
     notes: "",
     photo: ""
   };
+  
   componentDidMount(){ 
     this.getProds();
   }

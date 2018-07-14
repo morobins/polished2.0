@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Header, Button, Card, Image } from 'semantic-ui-react'
+
 import API from "../utils/API"
 import Wrapper from "../components/Wrapper/Wrapper"
 import {Redirect} from 'react-router-dom';
@@ -15,6 +16,12 @@ class Collection extends Component {
   componentDidMount() {
     this.getProds();
     this.loginCheck()
+  }
+
+  componentDidUpdate() {
+    this.setState({
+      isLoggedIn: this.props.isLoggedIn
+    })
   }
 
   getProds = () => {

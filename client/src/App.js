@@ -35,16 +35,31 @@ class App extends Component {
     handleAuth = (data) => {
       this.setState({isLoggedIn: data})
     }
+
+    logout = () => {
+      
+        API.logout()
+          .then(res => {
+            console.log(res.data);
+            if (!res.data.isLoggedIn) {
+              this.setState({
+                isLoggedIn: false
+              })
+            }
+          }).catch(err=> console.log(err))
+      }
+
+
     render(){
       return (
         <Router>
         <div className="container-fluid">
         {/*<div>{props.isLoggedIn}</div>}*/}
-          <Navbar isLoggedIn={this.state.isLoggedIn} />
+          <Navbar isLoggedIn={this.state.isLoggedIn} logout={this.logout}/>
           <Switch>
           <Route exact path="/" component={LoginForm}  handleAuth={this.handleAuth}/>
           <Route exact path="/" component={Home} />
-          <Route exact path="/collection" component={Collection} />
+          <Route exact path="/collection" render={() => <Collection isLoggedIn={this.state.isLoggedIn}/>} />
           <Route exact path="/search" component={SearchForm} />
           <Route exact path="/add" component={AddForm} />
           <Route exact path="/login" render={() => <LoginForm isLoggedIn={this.state.isLoggedIn} handleAuth={this.handleAuth} />} />

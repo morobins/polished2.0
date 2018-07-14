@@ -25,6 +25,7 @@ const imageStyle = {
 // }
 
 const Navbar = props => {
+  console.log(props.isLoggedIn);
   if (props.isLoggedIn) {
     return (
       <Menu secondary>
@@ -36,7 +37,7 @@ const Navbar = props => {
           <Menu.Item>
             <Button
               name='logout'
-              onClick={this.logout}
+              onClick={props.logout}
             >Logout</Button>
           </Menu.Item>
         </Menu.Menu>

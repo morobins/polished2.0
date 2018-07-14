@@ -4,11 +4,16 @@ import { Grid, Header, Segment, Button, Form, Message } from 'semantic-ui-react'
 import API from "../utils/API";
 
 
+const style = {
+  color: "red"
+}
+
 class Signup extends Component {
   state = {
     success: false,
     username: "",
-    password: ""
+    password: "",
+    error:""
   }
 
   handleInputChange = e => {
@@ -24,16 +29,28 @@ class Signup extends Component {
     API.register({ username: this.state.username, password: this.state.password })
       .then(res => {
         console.log(res.data);
-        this.setState({ success: true })
+        if (!res.data.error) {
+          this.setState({ success: true, error: "" })
+
+        } else {
+          throw new Error(res.data.error.message);
+        }
 
       })
-    // .catch(err => console.log(err.response.data));
+      .catch(err => {
+        console.log(err)
+        this.setState({
+          error: err
+        })
+      });
   }
 
   render() {
     // If Signup was a success, take them to the Login page
     if (this.state.success) {
       return <Redirect to="/login" />
+    } else {
+
     }
 
     return (
@@ -68,11 +85,9 @@ class Signup extends Component {
                   placeholder="Password"
                   label='Password'
                 />
-                <Message
-                  error
-                  header='Action Forbidden'
-                  content='You can only sign up for an account once with a given e-mail address.'
-                />
+                {this.state.error ? (
+                  <span style={style}>This username exists already.</span>
+                ) : ""}
                 <Button color='pink' fluid size='large' onClick={this.register}>
                   Sign Up
                 </Button>
