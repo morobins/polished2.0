@@ -43,9 +43,9 @@ export default {
     return axios.delete("/api/products/" + id);
   },
   // Adds a product to the user's personal database
-  addProduct: function (prodData, id) {
+  addProduct: function (prodData) {
     console.log(prodData)
-    return axios.put(`/api/users/${id}`, prodData);
+    return axios.put("/api/users/", prodData);
   },
 
   // Updates a product in the database
