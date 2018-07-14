@@ -49,7 +49,11 @@ class Search extends Component {
     });
   }
 
-  //TODO: handleAddProd
+  // handleAddProd = event => {
+  //   event.preventDefault();
+
+  //   API.addProduct
+  // }
 
   handleFormSubmit = event => {
     event.preventDefault();

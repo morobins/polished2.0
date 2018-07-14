@@ -23,11 +23,11 @@ class Collection extends Component {
   // }
 
   getProds = () => {
-    API.getProducts()
+    API.getUserProds()
       .then(res =>{
         console.log(res)
         this.setState({
-          products: res.data
+          products: res.data.userProds
         })
       })
       .catch(err => console.log(err));

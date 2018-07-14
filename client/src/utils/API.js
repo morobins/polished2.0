@@ -29,6 +29,11 @@ export default {
     return axios.get("/api/products")
   },
 
+  //retrieve all products from user's array
+  getUserProds: function (id) {
+    return axios.get("/api/users")
+  },
+
   // Gets a single product with the given id
   getProduct: function (id) {
     return axios.get("/api/products/" + id);
@@ -37,40 +42,16 @@ export default {
   deleteProduct: function (id) {
     return axios.delete("/api/products/" + id);
   },
-  // Adds a product to the database
-  addProduct: function (prodData) {
-    return axios.post("/api/products", prodData);
+  // Adds a product to the user's personal database
+  addProduct: function (prodData, id) {
+    console.log(prodData)
+    return axios.put(`/api/users/${id}`, prodData);
   },
 
   // Updates a product in the database
-  updateProduct: function (id) {
-    return axios.put("/api/products/" + id);
-  },
-
-    // getProdName: function(product_name) {
-    //   return axios.get(`https://secret-caverns-61779.herokuapp.com/api/products?product_name=${product_name}`)
-    // },
-
-    // getBrand: function(brand) {
-    //   return axios.get(`https://secret-caverns-61779.herokuapp.com/api/products?brand=${brand}`)
-    // },
-
-    // getColor: function(color) {
-    //   return axios.get(`https://secret-caverns-61779.herokuapp.com/api/products?color=${color}`)
-    // },
-
-    // getCategory: function(category) {
-    //   return axios.get(`https://secret-caverns-61779.herokuapp.com/api/products?category=${category}`)
-    // },
-
-    /* 
-    {
-      brand: this.state.brandSearch,
-      color: this.state.colorSearch,
-      category: this.state.categorySearch,
-      product_name: this.state.productSearch
-    }
-    */
+  // updateProduct: function (id) {
+  //   return axios.put("/api/products/" + id);
+  // },
 
     getProductList: function (query) {
       return axios.get("/api/products", { params: query })

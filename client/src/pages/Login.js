@@ -17,7 +17,7 @@ class LoginForm extends Component {
 
   componentDidMount() {
     API.loginCheck()
-      .then(res=> {
+      .then(res => {
         if (!res.data) {
           this.setState({
             isLoggedIn: false
@@ -55,12 +55,10 @@ class LoginForm extends Component {
       .then(res => {
         console.log(res.data);
         // this.setState({isLoggedIn: true})
-        this.props.handleAuth(true);
+        this.props.handleAuth(true, res.data);
       })
       .catch(err => console.log(err));
   }
-
-
 
   render() {
     console.log("hi");
@@ -107,7 +105,7 @@ class LoginForm extends Component {
               </Segment>
             </Form>
             <Message>
-              New User?    
+              New User?
               <Link to="/signup"> Sign Up!</Link>
             </Message>
           </Grid.Column>
