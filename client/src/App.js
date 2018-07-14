@@ -9,11 +9,6 @@ import AddForm from "./pages/Add";
 import Collection from "./pages/Collection";
 import API from "./utils/API";
 
-
-
-
-
-
 class App extends Component {
 
     state= {
@@ -32,8 +27,8 @@ class App extends Component {
         })
     }
 
-    handleAuth = (data) => {
-      this.setState({isLoggedIn: data})
+    handleAuth = (data, user) => {
+      this.setState({isLoggedIn: data, userData: user})
     }
 
     logout = () => {
@@ -63,7 +58,7 @@ class App extends Component {
 
           <Route exact path="/search" render={() => <SearchForm isLoggedIn={this.state.isLoggedIn}/>} />
 
-          <Route exact path="/add" component={() => <AddForm isLoggedIn={this.state.isLoggedIn} />} />
+          <Route exact path="/add" component={() => <AddForm userData={this.state.userData} isLoggedIn={this.state.isLoggedIn} />} />
 
           <Route exact path="/login" render={() => <LoginForm isLoggedIn={this.state.isLoggedIn} handleAuth={this.handleAuth} />} />
 

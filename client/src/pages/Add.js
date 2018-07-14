@@ -25,19 +25,19 @@ class AddForm extends Component {
   };
   
   componentDidMount(){ 
-    this.getProds();
+    // this.getProds();
   }
 
-  getProds = () => {
-    API.getProducts()
-      .then(res =>{
-        console.log(res)
-        this.setState({
-          products: res.data
-        })
-      })
-      .catch(err => console.log(err));
-  }
+  // getProds = () => {
+  //   API.getUserProds()
+  //     .then(res =>{
+  //       console.log(res)
+  //       this.setState({
+  //         products: res.data
+  //       })
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -55,14 +55,12 @@ class AddForm extends Component {
         color: this.state.color,
         notes: this.state.notes,
         product_category: this.state.category
-      })
-        .then(this.getProds())
-        .catch(err => console.log(err));
+      }, this.props.userData._id)
+        // .then(() => this.getUserProds())
+        .then (res => console.log(res))
+        .catch(err => console.log('update err', err));
     }
   };
-
-
-
 
   render() {
 

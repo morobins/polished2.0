@@ -38,8 +38,8 @@ router
 router
   .route('/:id')
   .get(usersController.findById)
+  .delete(usersController.remove)
   .put(usersController.update)
-  .delete(usersController.remove);
 
 // register a new user ("/api/user/register")
 router
