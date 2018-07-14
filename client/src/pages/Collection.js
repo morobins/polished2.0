@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Container, Header, Button, Card, Image } from 'semantic-ui-react'
 import API from "../utils/API"
 import Wrapper from "../components/Wrapper/Wrapper"
-import "../../src/Collection.css"
 import {Redirect} from 'react-router-dom';
 
 class Collection extends Component {
@@ -27,6 +26,13 @@ class Collection extends Component {
         })
       })
       .catch(err => console.log(err));
+  };
+
+  updateProd = id => {
+    API.updateProduct(id)
+    //get updated product
+      .then (res => this.getProds())
+      .catch (err => console.log(err));
   }
     // Check login status
     loginCheck = () => {
@@ -57,7 +63,7 @@ class Collection extends Component {
 
     return (
       <Container>
-        <Header className="title">Your Collection</Header>
+        <Header className="title">My Collection</Header>
         <Wrapper>
           {this.state.products.map(product => (
             <Card raised='true'>
@@ -72,7 +78,7 @@ class Collection extends Component {
               </Card.Content>
               <Card.Content extra>
                 <div className='ui two buttons'>
-                  <Button basic color='teal'>
+                  <Button basic color='teal' onClick={() => this.updateProd(product._id)}>
                     Edit
           </Button>
                   <Button basic color='pink' onClick={() => this.deleteProduct(product._id)}>
@@ -87,7 +93,7 @@ class Collection extends Component {
       </Container>
 
     )
-  }
-}
+  };
+};
 
 export default Collection;

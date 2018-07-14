@@ -42,6 +42,11 @@ export default {
     return axios.post("/api/products", prodData);
   },
 
+  // Updates a product in the database
+  updateProduct: function (id) {
+    return axios.put("/api/products/" + id);
+  },
+
     // getProdName: function(product_name) {
     //   return axios.get(`https://secret-caverns-61779.herokuapp.com/api/products?product_name=${product_name}`)
     // },

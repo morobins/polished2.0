@@ -49,6 +49,8 @@ class Search extends Component {
     });
   }
 
+  //TODO: handleAddProd
+
   handleFormSubmit = event => {
     event.preventDefault();
 
@@ -104,20 +106,19 @@ class Search extends Component {
               {this.state.prodsList.map(product => (
                 <Card>
                   <Card.Content>
-                    <Image src={product.photo} />
-
-                    <Card.Meta>{product.color}</Card.Meta>
+                    <Card.Meta>{product.brand}</Card.Meta>
                     <Card.Description>
-                      {product.brand}
+                      Color: {product.color}
+                    </Card.Description>
+                    //TODO: ternary operator
+                    <Card.Description>
+                      {product.product_name}
                     </Card.Description>
                   </Card.Content>
                   <Card.Content extra>
                     <div className='ui two buttons'>
                       <Button basic color='teal'>
-                        Edit
-                </Button>
-                      <Button basic color='pink'>
-                        Delete
+                        Add to Your Collection
                 </Button>
                     </div>
                   </Card.Content>
@@ -127,11 +128,9 @@ class Search extends Component {
           </Container>
         ) : (
             <Container text>
-              <Header as='h1' content='Search your Collection' textAlign='center' />
+              <Header as='h1' content='Find a Product' textAlign='center' />
               <Form verticalAlign='middle' >
-                <Form.Select>
-                  <option value='nails'>Nails</option>
-                </Form.Select>
+                <Form.Select options={options} placeholder='Search by Category' />
                 <Form.Field>
                   <label>Search by Brand</label>
                   <input placeholder='Brand' type='text' name='brandSearch'
