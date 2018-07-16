@@ -52,12 +52,7 @@ class Collection extends Component {
     //     })
     // }
 
-  deleteProduct = id => {
-    API.deleteProduct(id)
-    //get the newly updated list
-      .then(res => this.getProds())
-      .catch(err => console.log(err));
-  };
+
 
   render() {
     console.log(this.props.isLoggedIn);

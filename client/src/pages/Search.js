@@ -29,10 +29,6 @@ class Search extends Component {
     showProducts: false
   }
 
-  // componentDidMount() {
-  //   this.getProds();
-  // }
-
   handleInputChange = event => {
     const { name, value } = event.target;
 
@@ -49,18 +45,20 @@ class Search extends Component {
     });
   }
 
-  //TODO: MAKE THIS WORK!!
-  // handleAddProd = event => {
-  //   event.preventDefault();
 
-  //   API.addProduct()({
-  //     brand: prodsList[i].brand,
-  //     product_name: prodsList[i].product_name,
-  //     color: prodsList[i].color,
-  //     product_category: prodsList[i].product_category
-  //   }, this.props.userData._id)
-  //   .catch(err => console.log(err));
-  // }
+  handleAddProd = event => {
+    event.preventDefault();
+    const data = JSON.parse(event.target.getAttribute("mydataattr"));
+    API.addProduct({
+      id: data._id,
+      brand: data.brand,
+      product_name: data.product_name,
+      color: data.color,
+      product_category: data.product_category
+    })
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err));
+  }
 
 
   handleFormSubmit = event => {
@@ -133,7 +131,7 @@ class Search extends Component {
                   </Card.Content>
                   <Card.Content extra>
                     <div className='ui two buttons'>
-                      <Button basic color='teal' onClick={this.handleAddProd}>
+                      <Button basic color='teal' mydataattr={JSON.stringify(product)} onClick={this.handleAddProd}>
                         Add to Your Collection
                 </Button>
                     </div>

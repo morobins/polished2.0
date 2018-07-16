@@ -23,7 +23,7 @@ class AddForm extends Component {
     color: "",
     notes: "",
     photo: "",
-    success:""
+    success:false
   };
   
   componentDidMount(){ 
@@ -65,7 +65,7 @@ class AddForm extends Component {
   //     .catch(err => console.log(err));
   // };
 
-  //TODO: GET THE SUCCESS MESSAGE TO SHOW
+
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.brand && this.state.color) {
@@ -75,11 +75,19 @@ class AddForm extends Component {
         color: this.state.color,
         notes: this.state.notes,
         product_category: this.state.category
-      }, this.props.userData._id)
+      })
         // .then(() => this.getUserProds())
         .then
-          (res => console.log(res))
-          // this.setState({ success: ""})
+          (res => {
+          this.setState({ 
+            success: true,
+            brand: "",
+            productName: "",
+            color: "",
+            notes: "",
+            product_category: ""
+          })
+          })
         .catch
           (err => console.log('update err', err));
         
@@ -144,6 +152,9 @@ class AddForm extends Component {
           {this.state.success ? (
             <span>Your product has been added!</span>
           ) : ""}
+          
+          <br/>
+          <br/>
           <Button type='submit' disabled={!(this.state.brand && this.state.color)} onClick={this.handleFormSubmit}>Submit</Button>
         </Form>
       </Container>
