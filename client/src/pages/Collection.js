@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
-import { Container, Header, Button, Card, Image } from 'semantic-ui-react'
-
-import API from "../utils/API"
-import Wrapper from "../components/Wrapper/Wrapper"
-import {Redirect} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Container, Header, Button, Card, Image } from 'semantic-ui-react';
+import API from "../utils/API";
+import Wrapper from "../components/Wrapper/Wrapper";
+import { Redirect } from 'react-router-dom';
 
 class Collection extends Component {
   //declare state
@@ -16,15 +15,9 @@ class Collection extends Component {
     this.getProds();
   }
 
-  // componentDidUpdate() {
-  //   this.setState({
-  //     isLoggedIn: this.props.isLoggedIn
-  //   })
-  // }
-
   getProds = () => {
     API.getUserProds()
-      .then(res =>{
+      .then(res => {
         console.log(res)
         this.setState({
           products: res.data.userProds
@@ -35,34 +28,22 @@ class Collection extends Component {
 
   updateProd = id => {
     API.updateProduct(id)
-    //get updated product
-      .then (res => this.getProds())
-      .catch (err => console.log(err));
-  }
-    // Check login status
-    // loginCheck = () => {
-    //   API
-    //     .loginCheck()
-    //     .then(res => this.setState({
-    //       isLoggedIn: res.data.isLoggedIn, username: res.data.username
-    //     }))
-    //     .catch(err => {
-    //       console.log(err);
-    //       this.setState({isLoggedIn: false})
-    //     })
-    // }
+      //get updated product
+      .then(res => this.getProds())
+      .catch(err => console.log(err));
+  };
 
   deleteProduct = id => {
     API.deleteProduct(id)
-    //get the newly updated list
+      //get the newly updated list
       .then(res => this.getProds())
       .catch(err => console.log(err));
   };
 
   render() {
     console.log(this.props.isLoggedIn);
-     // If user isn't logged in, don't let them see this page
-     if (!this.props.isLoggedIn) {
+    // If user isn't logged in, don't let them see this page
+    if (!this.props.isLoggedIn) {
       return <Redirect to="/login" />
     }
 

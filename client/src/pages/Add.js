@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react'
-import API from "../utils/API"
-import {Redirect} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react';
+import API from "../utils/API";
+import { Redirect } from 'react-router-dom';
 
 const options = [
   { key: 'n', text: 'Nails', value: 'Nails' },
@@ -23,8 +23,8 @@ class AddForm extends Component {
     notes: "",
     photo: ""
   };
-  
-  componentDidMount(){ 
+
+  componentDidMount() {
     // this.getProds();
   }
 
@@ -56,8 +56,7 @@ class AddForm extends Component {
         notes: this.state.notes,
         product_category: this.state.category
       }, this.props.userData._id)
-        // .then(() => this.getUserProds())
-        .then (res => console.log(res))
+        .then(res => console.log(res))
         .catch(err => console.log('update err', err));
     }
   };
@@ -75,7 +74,7 @@ class AddForm extends Component {
           <Form.Select options={options}
             placeholder='Select a Category' />
           <Form.Field>
-            <label>Brand</label>
+            <label>Brand (required)</label>
             <input
               value={this.state.brand}
               onChange={this.handleInputChange}
@@ -91,7 +90,7 @@ class AddForm extends Component {
               placeholder='Product Name' />
           </Form.Field>
           <Form.Field>
-            <label>Color</label>
+            <label>Color (required)</label>
             <input
               value={this.state.color}
               onChange={this.handleInputChange}
@@ -123,6 +122,6 @@ class AddForm extends Component {
     )
   }
 
-}
+};
 
 export default AddForm
