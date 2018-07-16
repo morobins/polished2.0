@@ -4,6 +4,7 @@ import API from '../utils/API';
 import {Redirect} from 'react-router-dom';
 import {Image, CloudinaryContext} from 'cloudinary-react';
 
+
 const options = [
   { key: 'n', text: 'Nails', value: 'Nails' },
   { key: 'l', text: 'Lips', value: 'Lips' },
@@ -25,8 +26,8 @@ class AddForm extends Component {
     photo: "",
     success:false
   };
-  
-  componentDidMount(){ 
+
+  componentDidMount() {
     // this.getProds();
   }
 
@@ -89,8 +90,7 @@ class AddForm extends Component {
           })
           })
         .catch
-          (err => console.log('update err', err));
-        
+          (err => console.log('update err', err));  
     }
   };
 
@@ -107,7 +107,7 @@ class AddForm extends Component {
           <Form.Select options={options}
             placeholder='Select a Category' />
           <Form.Field>
-            <label>Brand</label>
+            <label>Brand (required)</label>
             <input
               value={this.state.brand}
               onChange={this.handleInputChange}
@@ -123,7 +123,7 @@ class AddForm extends Component {
               placeholder='Product Name' />
           </Form.Field>
           <Form.Field>
-            <label>Color</label>
+            <label>Color (required)</label>
             <input
               value={this.state.color}
               onChange={this.handleInputChange}
@@ -161,6 +161,6 @@ class AddForm extends Component {
     )
   }
 
-}
+};
 
 export default AddForm

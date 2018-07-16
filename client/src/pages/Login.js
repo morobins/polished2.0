@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 import title from "../images/title.jpg";
 import { Redirect, Link } from 'react-router-dom';
 import API from "../utils/API";
@@ -9,6 +9,7 @@ import Signup from "../pages/Signup";
 const style = {
   color: "red"
 }
+
 
 class LoginForm extends Component {
   state = {
@@ -32,7 +33,7 @@ class LoginForm extends Component {
           })
         }
       })
-  }
+  };
 
   componentDidUpdate() {
     if (this.state.isLoggedIn !== this.props.isLoggedIn) {
@@ -40,7 +41,7 @@ class LoginForm extends Component {
         isLoggedIn: this.props.isLoggedIn
       })
     }
-  }
+  };
 
   handleInputChange = e => {
     const { name, value } = e.target;
@@ -48,7 +49,7 @@ class LoginForm extends Component {
     this.setState({
       [name]: value
     })
-  }
+  };
 
   // Method to handle user login, should redirect to main page when done
   login = (e) => {
@@ -65,6 +66,7 @@ class LoginForm extends Component {
           throw new Error(res.data.error.message);
         }
       })
+
       .catch(err => {
         console.log(err)
         this.setState({
@@ -72,6 +74,7 @@ class LoginForm extends Component {
         })
       });
   }
+
 
   render() {
     console.log("hi");
@@ -127,6 +130,6 @@ class LoginForm extends Component {
       </div>
     )
   }
-}
+};
 
 export default LoginForm;

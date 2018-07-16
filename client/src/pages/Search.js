@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { Container, Header, Button, Form, Card, Image } from 'semantic-ui-react'
-import API from "../utils/API"
+import React, { Component } from 'react';
+import { Container, Header, Button, Form, Card, Image } from 'semantic-ui-react';
+import API from "../utils/API";
 import Wrapper from "../components/Wrapper";
 import { Redirect } from 'react-router-dom';
 
@@ -35,7 +35,7 @@ class Search extends Component {
     this.setState({
       [name]: value
     });
-  }
+  };
 
   handleNewSearch = event => {
     event.preventDefault();
@@ -43,7 +43,7 @@ class Search extends Component {
     this.setState({
       showProducts: false
     });
-  }
+  };
 
 
   handleAddProd = event => {

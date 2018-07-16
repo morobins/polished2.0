@@ -29,6 +29,7 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
+
   findById: function (req, res) {
     Product
       .findById(req.params.id)
@@ -36,7 +37,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
- create: function(req, res) {
+  create: function (req, res) {
     console.log("hit da route")
     console.log(req.body)
 
@@ -44,16 +45,18 @@ module.exports = {
       .create(req.body)
       .then(dbModel => {
         console.log(dbModel)
-        res.json(dbModel)})
+        res.json(dbModel)
+      })
       .catch(err => res.status(422).json(err));
   },
-  
+
   update: function (req, res) {
     Product
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  
   remove: function (req, res) {
     Product
       .findById({ _id: req.params.id })
