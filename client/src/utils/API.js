@@ -8,29 +8,32 @@ export default {
   //    username: "alex",
   //    password: 12345Password!
   //   }
-  register: function(userInfo) {
+  register: function (userInfo) {
     return axios.post("/api/users/register", userInfo)
   },
   // loginCreds = {username: "alex", "password": 12345Password!}
-  
-  login: function(loginCreds) {
+
+  login: function (loginCreds) {
     return axios.post('/api/users/login', loginCreds)
   },
+
   // Path to check if user is logged in
-  loginCheck: function() {
+  loginCheck: function () {
     return axios.get('/api/users/login')
   },
+
   // path to log out
-  logout: function() {
+  logout: function () {
     return axios.get('/api/users/logout')
   },
+
   // retrieve all saved products from mongo
   getProducts: function () {
     return axios.get("/api/products")
   },
 
   //retrieve all products from user's array
-  getUserProds: function() {
+  getUserProds: function () {
     return axios.get("/api/users")
   },
 
@@ -38,10 +41,12 @@ export default {
   getProduct: function (id) {
     return axios.get("/api/products/" + id);
   },
+
   // Deletes the product with the given id
   deleteProduct: function (id) {
     return axios.delete("/api/products/" + id);
   },
+
   // Adds a product to the user's personal database
   addProduct: function (prodData) {
     console.log(prodData)
@@ -53,7 +58,7 @@ export default {
   //   return axios.put("/api/products/" + id);
   // },
 
-    getProductList: function (query) {
-      return axios.get("/api/products", { params: query })
-    }
+  getProductList: function (query) {
+    return axios.get("/api/products", { params: query })
   }
+}

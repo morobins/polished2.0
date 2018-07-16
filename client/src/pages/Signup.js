@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { Grid, Header, Segment, Button, Form, Message } from 'semantic-ui-react'
+import { Grid, Header, Segment, Button, Form, Message } from 'semantic-ui-react';
 import API from "../utils/API";
 
 
@@ -13,7 +13,7 @@ class Signup extends Component {
     success: false,
     username: "",
     password: "",
-    error:""
+    error: ""
   }
 
   handleInputChange = e => {
@@ -43,7 +43,7 @@ class Signup extends Component {
           error: err
         })
       });
-  }
+  };
 
   render() {
     // If Signup was a success, take them to the Login page
@@ -98,6 +98,6 @@ class Signup extends Component {
       </div>
     )
   }
-}
+};
 
 export default Signup;
