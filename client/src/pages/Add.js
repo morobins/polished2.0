@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react';
-import API from "../utils/API";
-import { Redirect } from 'react-router-dom';
+import API from '../utils/API';
+import {Redirect} from 'react-router-dom';
+import {Image, CloudinaryContext} from 'cloudinary-react';
+
 
 const options = [
   { key: 'n', text: 'Nails', value: 'Nails' },
@@ -21,7 +23,8 @@ class AddForm extends Component {
     productName: "",
     color: "",
     notes: "",
-    photo: ""
+    photo: "",
+    success:false
   };
 
   componentDidMount() {
@@ -39,12 +42,30 @@ class AddForm extends Component {
   //     .catch(err => console.log(err));
   // }
 
+
+  //TODO: MAKE CLOUDINARY WORK!
+//   uploadWidget() {
+//     cloudinary.openUploadWidget({ cloud_name: 'dmz30uupq', upload_preset: 'PRESET'},
+//         function(error, result) {
+//             console.log(result);
+//         });
+// }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
   };
+
+  //TODO: HANDLE DELETE
+  // deleteProduct = id => {
+  //   API.deleteProduct(id)
+  //   //get the newly updated list
+  //     .then(res => this.getProds())
+  //     .catch(err => console.log(err));
+  // };
+
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -55,9 +76,21 @@ class AddForm extends Component {
         color: this.state.color,
         notes: this.state.notes,
         product_category: this.state.category
-      }, this.props.userData._id)
-        .then(res => console.log(res))
-        .catch(err => console.log('update err', err));
+      })
+        // .then(() => this.getUserProds())
+        .then
+          (res => {
+          this.setState({ 
+            success: true,
+            brand: "",
+            productName: "",
+            color: "",
+            notes: "",
+            product_category: ""
+          })
+          })
+        .catch
+          (err => console.log('update err', err));  
     }
   };
 
@@ -114,8 +147,14 @@ class AddForm extends Component {
               labelPosition="right"
             />
             <input hidden id="upload" multiple type="file" />
-          </Label>
-
+            </Label>
+          {/*<Button type='upload' onClick={this.uploadWidget.bind(this)}>Upload Image</Button>*/}
+          {this.state.success ? (
+            <span>Your product has been added!</span>
+          ) : ""}
+          
+          <br/>
+          <br/>
           <Button type='submit' disabled={!(this.state.brand && this.state.color)} onClick={this.handleFormSubmit}>Submit</Button>
         </Form>
       </Container>

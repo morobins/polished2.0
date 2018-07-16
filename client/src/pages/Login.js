@@ -5,12 +5,19 @@ import { Redirect, Link } from 'react-router-dom';
 import API from "../utils/API";
 import Signup from "../pages/Signup";
 
+
+const style = {
+  color: "red"
+}
+
+
 class LoginForm extends Component {
   state = {
     isLoggedIn: false,
     email: "",
     password: "",
-    username: ""
+    username: "",
+    error:""
   }
 
   componentDidMount() {
@@ -52,11 +59,22 @@ class LoginForm extends Component {
       .login({ username: this.state.username, password: this.state.password })
       .then(res => {
         console.log(res.data);
-        // this.setState({isLoggedIn: true})
-        this.props.handleAuth(true, res.data);
+        if (!res.data.error) {
+          this.setState({ success: true, error: "" })
+          this.props.handleAuth(true, res.data);
+        } else {
+          throw new Error(res.data.error.message);
+        }
       })
-      .catch(err => console.log(err));
-  };
+
+      .catch(err => {
+        console.log(err)
+        this.setState({
+          error: err
+        })
+      });
+  }
+
 
   render() {
     console.log("hi");
@@ -81,6 +99,9 @@ class LoginForm extends Component {
             <Form size='large'>
               <Segment stacked>
                 <Form.Input fluid icon='user' name="username" onChange={this.handleInputChange} value={this.state.username} iconPosition='left' placeholder='E-mail address' />
+                {this.state.error ? (
+                  <span style={style}>User does not exist.</span>
+                ) : ""}
                 <Form.Input
                   fluid
                   icon='lock'
@@ -91,11 +112,9 @@ class LoginForm extends Component {
                   onChange={this.handleInputChange}
                   value={this.state.password}
                 />
-                <Message
-                  error
-                  header='Action Forbidden'
-                  content='You can only sign up for an account once with a given e-mail address.'
-                />
+                {/*this.state.error ? (
+                  <span style={style}>Incorrect Password.</span>
+                ) : ""*/}
 
                 <Button color='teal' fluid size='large' onClick={this.login}>
                   Login

@@ -40,6 +40,7 @@ class Collection extends Component {
       .catch(err => console.log(err));
   };
 
+
   render() {
     console.log(this.props.isLoggedIn);
     // If user isn't logged in, don't let them see this page
