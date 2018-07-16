@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container, Header, Button, Form, Card, Image } from 'semantic-ui-react'
 import API from "../utils/API"
 import Wrapper from "../components/Wrapper";
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const options = [
 
@@ -49,11 +49,19 @@ class Search extends Component {
     });
   }
 
+  //TODO: MAKE THIS WORK!!
   // handleAddProd = event => {
   //   event.preventDefault();
 
-  //   API.addProduct
+  //   API.addProduct()({
+  //     brand: prodsList[i].brand,
+  //     product_name: prodsList[i].product_name,
+  //     color: prodsList[i].color,
+  //     product_category: prodsList[i].product_category
+  //   }, this.props.userData._id)
+  //   .catch(err => console.log(err));
   // }
+
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -113,7 +121,7 @@ class Search extends Component {
                 </Button>
             <Wrapper>
               {this.state.prodsList.map(product => (
-                <Card>
+                <Card key={product._id}>
                   <Card.Content>
                     <Card.Meta>{product.brand}</Card.Meta>
                     <Card.Description>
@@ -125,7 +133,7 @@ class Search extends Component {
                   </Card.Content>
                   <Card.Content extra>
                     <div className='ui two buttons'>
-                      <Button basic color='teal'>
+                      <Button basic color='teal' onClick={this.handleAddProd}>
                         Add to Your Collection
                 </Button>
                     </div>

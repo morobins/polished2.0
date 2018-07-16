@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react'
-import API from "../utils/API"
+import React, { Component } from 'react';
+import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react';
+import API from '../utils/API';
 import {Redirect} from 'react-router-dom';
+import {Image, CloudinaryContext} from 'cloudinary-react';
 
 const options = [
   { key: 'n', text: 'Nails', value: 'Nails' },
@@ -21,7 +22,8 @@ class AddForm extends Component {
     productName: "",
     color: "",
     notes: "",
-    photo: ""
+    photo: "",
+    success:""
   };
   
   componentDidMount(){ 
@@ -39,6 +41,15 @@ class AddForm extends Component {
   //     .catch(err => console.log(err));
   // }
 
+
+  //TODO: MAKE CLOUDINARY WORK!
+//   uploadWidget() {
+//     cloudinary.openUploadWidget({ cloud_name: 'dmz30uupq', upload_preset: 'PRESET'},
+//         function(error, result) {
+//             console.log(result);
+//         });
+// }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -46,6 +57,15 @@ class AddForm extends Component {
     });
   };
 
+  //TODO: HANDLE DELETE
+  // deleteProduct = id => {
+  //   API.deleteProduct(id)
+  //   //get the newly updated list
+  //     .then(res => this.getProds())
+  //     .catch(err => console.log(err));
+  // };
+
+  //TODO: GET THE SUCCESS MESSAGE TO SHOW
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.brand && this.state.color) {
@@ -57,8 +77,12 @@ class AddForm extends Component {
         product_category: this.state.category
       }, this.props.userData._id)
         // .then(() => this.getUserProds())
-        .then (res => console.log(res))
-        .catch(err => console.log('update err', err));
+        .then
+          (res => console.log(res))
+          // this.setState({ success: ""})
+        .catch
+          (err => console.log('update err', err));
+        
     }
   };
 
@@ -115,8 +139,11 @@ class AddForm extends Component {
               labelPosition="right"
             />
             <input hidden id="upload" multiple type="file" />
-          </Label>
-
+            </Label>
+          {/*<Button type='upload' onClick={this.uploadWidget.bind(this)}>Upload Image</Button>*/}
+          {this.state.success ? (
+            <span>Your product has been added!</span>
+          ) : ""}
           <Button type='submit' disabled={!(this.state.brand && this.state.color)} onClick={this.handleFormSubmit}>Submit</Button>
         </Form>
       </Container>
