@@ -3,7 +3,7 @@ import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-re
 import API from '../utils/API';
 import {Redirect} from 'react-router-dom';
 import {Image, CloudinaryContext} from 'cloudinary-react';
-
+import uuidv4 from "uuid";
 
 const options = [
   { key: 'n', text: 'Nails', value: 'Nails' },
@@ -58,19 +58,14 @@ class AddForm extends Component {
     });
   };
 
-  //TODO: HANDLE DELETE
-  // deleteProduct = id => {
-  //   API.deleteProduct(id)
-  //   //get the newly updated list
-  //     .then(res => this.getProds())
-  //     .catch(err => console.log(err));
-  // };
+
 
 
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.brand && this.state.color) {
       API.addProduct({
+        id: uuidv4(),
         brand: this.state.brand,
         product_name: this.state.productName,
         color: this.state.color,

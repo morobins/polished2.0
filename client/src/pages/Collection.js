@@ -33,6 +33,7 @@ class Collection extends Component {
       .catch(err => console.log(err));
   };
 
+    //TODO: Correct this
   deleteProduct = id => {
     API.deleteProduct(id)
       //get the newly updated list
@@ -65,10 +66,10 @@ class Collection extends Component {
               </Card.Content>
               <Card.Content extra>
                 <div className='ui two buttons'>
-                  <Button basic color='teal' onClick={() => this.updateProd(product._id)}>
+                  {/*<Button basic color='teal' onClick={() => this.updateProd(product._id)}>
                     Edit
-          </Button>
-                  <Button basic color='pink' onClick={() => this.deleteProduct(product._id)}>
+          </Button>*/}
+                  <Button basic color='pink' onClick={() => this.deleteProduct(product.id)}>
                     Delete
           </Button>
                 </div>
