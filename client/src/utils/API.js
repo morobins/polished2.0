@@ -42,9 +42,10 @@ export default {
     return axios.get("/api/products/" + id);
   },
 
+  //TODO: Correct this
   // Deletes the product with the given id
   deleteProduct: function (id) {
-    return axios.delete("/api/products/" + id);
+    return axios.put("/api/users/" + id);
   },
 
   // Adds a product to the user's personal database

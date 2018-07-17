@@ -20,6 +20,22 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
+    //TODO: Correct this
+  findProductById: function (req, res) {
+    db
+    .User.findOneAndUpdate({
+      _id: ObjectId(req.user._id)
+    }, {
+        $pull: {
+          userProds: {
+            id: req.body.id
+          }
+        }
+      }).then(res => {
+        console.log(res)
+      }).catch(err => console.log(err))
+  },
+
   create: function (req, res) {
     db
       .User
@@ -60,3 +76,6 @@ module.exports = {
       });
   }
 };
+
+
+
