@@ -83,6 +83,10 @@ class Search extends Component {
           matchedProduct = (this.state.colorSearch.toLowerCase().includes(product.color.toLowerCase()) ? true : false)
         }
 
+        if (this.state.productSearch) {
+          matchedProduct = (this.state.productSearch.toLowerCase().includes(product.product_name.toLowerCase()) ? true : false)
+        }
+
         if (this.state.categorySearch) {
           matchedProduct = (this.state.categorySearch.toLowerCase().includes(product.category.toLowerCase()) ? true : false)
         }
@@ -144,7 +148,7 @@ class Search extends Component {
             <Container text>
               <Header as='h1' content='Find a Product' textAlign='center' />
               <Form verticalAlign='middle' >
-                <Form.Select options={options} placeholder='Search by Category' />
+                {/*<Form.Select options={options} placeholder='Search by Category' />*/}
                 <Form.Field>
                   <label>Search by Brand</label>
                   <input placeholder='Brand' type='text' name='brandSearch'
