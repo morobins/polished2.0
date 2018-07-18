@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react';
 import API from '../utils/API';
-import {Redirect} from 'react-router-dom';
-// import {Image, CloudinaryContext} from 'cloudinary-react';
-import cloudinary from 'cloudinary';
+import { Redirect } from 'react-router-dom';
 import uuidv4 from "uuid";
 
 const options = [
@@ -25,50 +23,24 @@ class AddForm extends Component {
     color: "",
     notes: "",
     photo: "",
-    success:false
+    success: false
   };
 
-  componentDidMount() {
-    // this.getProds();
-  }
-
-  // getProds = () => {
-  //   API.getUserProds()
-  //     .then(res =>{
-  //       console.log(res)
-  //       this.setState({
-  //         products: res.data
-  //       })
-  //     })
-  //     .catch(err => console.log(err));
-  // }
-
-
-  //TODO: MAKE CLOUDINARY WORK!
   uploadWidget() {
     const that = this;
-    window.cloudinary.openUploadWidget({ cloud_name: 'dmz30uupq', upload_preset: 'h7tuv6vd'},
-            function(error, result) {
-                console.log(result);
-                if (that.state.photo) {
-                  
-                  that.setState({photo: result[0].secure_url});
-                } else throw error;
-               
-            });
+    window.cloudinary.openUploadWidget({ cloud_name: 'dmz30uupq', upload_preset: 'h7tuv6vd' },
+      function (error, result) {
+        console.log(result);
+        // if (that.state.photo) {
 
-//      cloudinary.uploader.upload_stream(
-//   function(result) { console.log(result); },
-//   {api_key: 316522144913349,
-//   cloud_name: 'dmz30uupq',
-//   api_secret: 'D4qNQUa2dl8fcCRMiSOAckwCOSk'}
-//   // { agent: myAgent }
-// );
-    // openUploadWidget({ cloud_name: 'dmz30uupq'},
-    //     function(error, result) {
-    //         console.log(result);
-    //     });
-}
+          if (result) {
+            that.setState({ photo: result[0].secure_url });
+          }
+        // } else {
+        //   throw error;
+        // }
+      });
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -76,9 +48,6 @@ class AddForm extends Component {
       [name]: value
     });
   };
-
-
-
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -92,10 +61,9 @@ class AddForm extends Component {
         notes: this.state.notes,
         product_category: this.state.category
       })
-        // .then(() => this.getUserProds())
         .then
-          (res => {
-          this.setState({ 
+        (res => {
+          this.setState({
             success: true,
             brand: "",
             productName: "",
@@ -103,9 +71,9 @@ class AddForm extends Component {
             notes: "",
             product_category: ""
           })
-          })
+        })
         .catch
-          (err => console.log('update err', err));  
+        (err => console.log('update err', err));
     }
   };
 
@@ -153,26 +121,14 @@ class AddForm extends Component {
             name="notes"
             label='Notes'
           />
-          {/*<Label as="label" basic htmlFor="upload">
-            <Button icon="upload"
-              label={{
-                basic: true,
-                content: 'Select photo'
-              }}
-              labelPosition="right"
-            />
-            <input hidden id="upload" multiple type="file" />
-            </Label>*/}
-          <Button type='upload' onClick={() => this.uploadWidget()}>Upload Image</Button> 
-
-          {/* <Image cloudName="demo" publicId="sample" width="300" crop="scale"/> */}
+          <Button type='upload' onClick={() => this.uploadWidget()}>Upload Image</Button>
 
           {this.state.success ? (
             <span>Your product has been added!</span>
           ) : ""}
-          
-          <br/>
-          <br/>
+
+          <br />
+          <br />
           <Button type='submit' disabled={!(this.state.brand && this.state.color)} onClick={this.handleFormSubmit}>Submit</Button>
         </Form>
       </Container>

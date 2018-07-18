@@ -35,6 +35,7 @@ class Collection extends Component {
 
     //TODO: Correct this
   deleteProduct = id => {
+    console.log(id);
     API.deleteProduct(id)
       //get the newly updated list
       .then(res => this.getProds())

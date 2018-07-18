@@ -45,7 +45,8 @@ export default {
   //TODO: Correct this
   // Deletes the product with the given id
   deleteProduct: function (id) {
-    return axios.put("/api/users/" + id);
+    console.log(id)
+    return axios.put("/api/users/", {id: id});
   },
 
   // Adds a product to the user's personal database
