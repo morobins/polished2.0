@@ -42,6 +42,10 @@ router
   .delete(usersController.remove)
   .put(usersController.update)
 
+router
+  .route('/remove')
+  .put(usersController.findProductById)
+
 // register a new user ("/api/user/register")
 router
   .route('/register')

@@ -22,6 +22,7 @@ module.exports = {
 
     //TODO: Correct this
   findProductById: function (req, res) {
+    
     db
     .User.findOneAndUpdate({
       _id: ObjectId(req.user._id)
@@ -31,9 +32,13 @@ module.exports = {
             id: req.body.id
           }
         }
-      }).then(res => {
-        console.log(res)
-      }).catch(err => console.log(err))
+      }).then(result => {
+        console.log(result)
+        res.json(result)
+      }).catch(err => {
+        console.log(err)
+        res.json(err);
+      })
   },
 
   create: function (req, res) {

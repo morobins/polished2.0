@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react';
 import API from '../utils/API';
-import {Redirect} from 'react-router-dom';
-import {Image, CloudinaryContext} from 'cloudinary-react';
+import { Redirect } from 'react-router-dom';
 import uuidv4 from "uuid";
 
 const options = [
@@ -24,32 +23,24 @@ class AddForm extends Component {
     color: "",
     notes: "",
     photo: "",
-    success:false
+    success: false
   };
 
-  componentDidMount() {
-    // this.getProds();
+  uploadWidget() {
+    const that = this;
+    window.cloudinary.openUploadWidget({ cloud_name: 'dmz30uupq', upload_preset: 'h7tuv6vd' },
+      function (error, result) {
+        console.log(result);
+        // if (that.state.photo) {
+
+          if (result) {
+            that.setState({ photo: result[0].secure_url });
+          }
+        // } else {
+        //   throw error;
+        // }
+      });
   }
-
-  // getProds = () => {
-  //   API.getUserProds()
-  //     .then(res =>{
-  //       console.log(res)
-  //       this.setState({
-  //         products: res.data
-  //       })
-  //     })
-  //     .catch(err => console.log(err));
-  // }
-
-
-  //TODO: MAKE CLOUDINARY WORK!
-//   uploadWidget() {
-//     cloudinary.openUploadWidget({ cloud_name: 'dmz30uupq', upload_preset: 'PRESET'},
-//         function(error, result) {
-//             console.log(result);
-//         });
-// }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -58,24 +49,21 @@ class AddForm extends Component {
     });
   };
 
-
-
-
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.brand && this.state.color) {
       API.addProduct({
         id: uuidv4(),
+        photo: this.state.photo,
         brand: this.state.brand,
         product_name: this.state.productName,
         color: this.state.color,
         notes: this.state.notes,
         product_category: this.state.category
       })
-        // .then(() => this.getUserProds())
         .then
-          (res => {
-          this.setState({ 
+        (res => {
+          this.setState({
             success: true,
             brand: "",
             productName: "",
@@ -83,9 +71,9 @@ class AddForm extends Component {
             notes: "",
             product_category: ""
           })
-          })
+        })
         .catch
-          (err => console.log('update err', err));  
+        (err => console.log('update err', err));
     }
   };
 
@@ -133,23 +121,14 @@ class AddForm extends Component {
             name="notes"
             label='Notes'
           />
-          <Label as="label" basic htmlFor="upload">
-            <Button icon="upload"
-              label={{
-                basic: true,
-                content: 'Select photo'
-              }}
-              labelPosition="right"
-            />
-            <input hidden id="upload" multiple type="file" />
-            </Label>
-          {/*<Button type='upload' onClick={this.uploadWidget.bind(this)}>Upload Image</Button>*/}
+          <Button type='upload' onClick={() => this.uploadWidget()}>Upload Image</Button>
+
           {this.state.success ? (
             <span>Your product has been added!</span>
           ) : ""}
-          
-          <br/>
-          <br/>
+
+          <br />
+          <br />
           <Button type='submit' disabled={!(this.state.brand && this.state.color)} onClick={this.handleFormSubmit}>Submit</Button>
         </Form>
       </Container>
