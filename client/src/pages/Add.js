@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Container, Header, Button, Form, TextArea, Label } from 'semantic-ui-react';
 import API from '../utils/API';
 import {Redirect} from 'react-router-dom';
-import {Image, CloudinaryContext} from 'cloudinary-react';
+// import {Image, CloudinaryContext} from 'cloudinary-react';
+import cloudinary from 'cloudinary';
 import uuidv4 from "uuid";
 
 const options = [
@@ -44,12 +45,30 @@ class AddForm extends Component {
 
 
   //TODO: MAKE CLOUDINARY WORK!
-//   uploadWidget() {
-//     cloudinary.openUploadWidget({ cloud_name: 'dmz30uupq', upload_preset: 'PRESET'},
-//         function(error, result) {
-//             console.log(result);
-//         });
-// }
+  uploadWidget() {
+    const that = this;
+    window.cloudinary.openUploadWidget({ cloud_name: 'dmz30uupq', upload_preset: 'h7tuv6vd'},
+            function(error, result) {
+                console.log(result);
+                if (that.state.photo) {
+                  
+                  that.setState({photo: result[0].secure_url});
+                } else throw error;
+               
+            });
+
+//      cloudinary.uploader.upload_stream(
+//   function(result) { console.log(result); },
+//   {api_key: 316522144913349,
+//   cloud_name: 'dmz30uupq',
+//   api_secret: 'D4qNQUa2dl8fcCRMiSOAckwCOSk'}
+//   // { agent: myAgent }
+// );
+    // openUploadWidget({ cloud_name: 'dmz30uupq'},
+    //     function(error, result) {
+    //         console.log(result);
+    //     });
+}
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -66,6 +85,7 @@ class AddForm extends Component {
     if (this.state.brand && this.state.color) {
       API.addProduct({
         id: uuidv4(),
+        photo: this.state.photo,
         brand: this.state.brand,
         product_name: this.state.productName,
         color: this.state.color,
@@ -133,7 +153,7 @@ class AddForm extends Component {
             name="notes"
             label='Notes'
           />
-          <Label as="label" basic htmlFor="upload">
+          {/*<Label as="label" basic htmlFor="upload">
             <Button icon="upload"
               label={{
                 basic: true,
@@ -142,8 +162,11 @@ class AddForm extends Component {
               labelPosition="right"
             />
             <input hidden id="upload" multiple type="file" />
-            </Label>
-          {/*<Button type='upload' onClick={this.uploadWidget.bind(this)}>Upload Image</Button>*/}
+            </Label>*/}
+          <Button type='upload' onClick={() => this.uploadWidget()}>Upload Image</Button> 
+
+          {/* <Image cloudName="demo" publicId="sample" width="300" crop="scale"/> */}
+
           {this.state.success ? (
             <span>Your product has been added!</span>
           ) : ""}
