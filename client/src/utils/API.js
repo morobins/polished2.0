@@ -52,7 +52,7 @@ export default {
   // Adds a product to the user's personal database
   addProduct: function (prodData) {
     console.log(prodData)
-    return axios.put("/api/users/", prodData);
+    return axios.put("/api/userProducts/", prodData);
   },
 
   // Updates a product in the database

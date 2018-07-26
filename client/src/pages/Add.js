@@ -53,13 +53,13 @@ class AddForm extends Component {
     event.preventDefault();
     if (this.state.brand && this.state.color) {
       API.addProduct({
-        id: uuidv4(),
+        // id: uuidv4(),
         photo: this.state.photo,
         brand: this.state.brand,
         product_name: this.state.productName,
         color: this.state.color,
         notes: this.state.notes,
-        product_category: this.state.category
+        product_category: this.state.category  
       })
         .then
         (res => {

@@ -6,7 +6,14 @@ const User = new Schema({
   /* 
     Define your user information fields for the schema here, DO NOT MAKE "username" and "password" fields, since passport will set those for you    
   */
- userProds: []
+ userProds: [
+  {
+    // Store ObjectIds in the array
+    type: Schema.Types.ObjectId,
+    // The ObjectIds will refer to the ids in the Note model
+    ref: "UserProduct"
+  }
+]
 
 });
 
