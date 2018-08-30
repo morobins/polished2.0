@@ -42,7 +42,6 @@ export default {
     return axios.get("/api/products/" + id);
   },
 
-  //TODO: Correct this
   // Deletes the product with the given id
   deleteProduct: function (id) {
     console.log(id)

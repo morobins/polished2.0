@@ -33,7 +33,6 @@ class Collection extends Component {
       .catch(err => console.log(err));
   };
 
-    //TODO: Correct this
   deleteProduct = id => {
     console.log(id);
     API.deleteProduct(id)
