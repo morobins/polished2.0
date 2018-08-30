@@ -22,10 +22,10 @@ module.exports = {
 
     //TODO: Correct this
   findProductById: function (req, res) {
-    
+    console.log("finding")
     db
     .User.findOneAndUpdate({
-      _id: ObjectId(req.user._id)
+      _id: req.user._id
     }, {
         $pull: {
           userProds: {
@@ -51,8 +51,10 @@ module.exports = {
 
   update: function (req, res) {
     console.log("updating user");
-    console.log(req.body)
-    User.findOneAndUpdate({
+    console.log("body" + JSON.stringify(req.body));
+    console.log("user _id" + req.user._id)
+    db
+    .User.findOneAndUpdate({
       _id: req.user._id
     }, { $push: { userProds: req.body } })
       .then(dbModel => res.json(dbModel))
@@ -60,6 +62,7 @@ module.exports = {
   },
 
   remove: function (req, res) {
+    console.log("removing");
     db
       .User
       .findById({ _id: req.params.id })
